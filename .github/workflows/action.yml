@@ -77,7 +77,7 @@ jobs:
           docker Save graylog/graylog:5.2.6 | gzip > graylog-5.2.6.tar.gz 
 
       - name: Upload Graylog Image Artifact 
-        uses: actions/upload-artifact @ v2 
+        uses: actions/upload-artifact@v2 
         with:
           name: graylog-5.2.6 
           path: graylog-5.2.6.tar.gz 
