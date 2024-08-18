@@ -61,7 +61,7 @@ jobs:
           path: prom-alertmanager-latest.tar.gz
 
       - name: Pull and save OpenSearch image
-        run : |
+        run: |
            docker pull opensearchproject/opensearch:latest
            docker save opensearchproject/opensearch:latest  | gzip > opensearch-latest.tar.gz 
 
@@ -72,7 +72,7 @@ jobs:
           path: opensearch-latest.tar.gz 
 
       - name: Pull and Save Graylog Image 
-        run:
+        run: |
           docker Pull graylog/graylog:5.2.6 
           docker Save graylog/graylog:5.2.6 | gzip > graylog-5.2.6.tar.gz 
 
@@ -83,7 +83,7 @@ jobs:
           path: graylog-5.2.6.tar.gz 
 
       - name: Pull and Save MongoDB Image 
-        run:
+        run: |
           docker Pull mongo:5.0.26 
           docker Save mongo:5.0.26 | gzip > mongo-5.0.26.tar.gz 
 
@@ -94,7 +94,7 @@ jobs:
           path: mongo-5.0.26.tar.gz
 
       - name: Pull and Save MySQL Image as File  
-        run:
+        run: |
           docker Pull mysql/mysql-server:8.0.36 
           docker Save mysql/mysql-server:8.0.36 | gzip > mysql-8.0.36.tar.gz 
 
