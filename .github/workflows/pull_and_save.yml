@@ -132,4 +132,4 @@ jobs:
         uses: actions/upload-artifact@v3  
         with:
           name: mysql-8.0.36  
-          ath: mysql-8.0.36.tar.gz 
+          path: mysql-8.0.36.tar.gz 
