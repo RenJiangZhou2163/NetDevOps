@@ -1,4 +1,4 @@
-name: Pull and Save Zabbix Docker Image
+name: Pull and Save Multiple Docker Images
 
 on:
   push:
@@ -16,16 +16,72 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Pull Zabbix Docker image
-        run: |
-          docker pull zabbix/zabbix-server-mysql:latest
-
-      - name: Save Zabbix Docker image as file
-        run: |
-          docker save zabbix/zabbix-server-mysql:latest | gzip > zabbix-server-mysql-latest.tar.gz
-
-      - name: Upload artifact (saved image)
-        uses: actions/upload-artifact@v2 
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1 
         with:
-          name: zabbix-server-mysql-latest
-          path: zabbix-server-mysql-latest.tar.gz
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Pull Zabbix Server PostgreSQL image
+        run: |
+          docker pull zabbix/zabbix-server-pgsql:latest
+
+      - name: Save Zabbix Server PostgreSQL image as file
+        run: |
+          docker save zabbix/zabbix-server-pgsql:latest | gzip > zabbix-server-pgsql-latest.tar.gz
+
+      - name: Pull Zabbix Proxy MySQL image
+        run: |
+          docker pull zabbix/zabbix-proxy-mysql:latest
+
+      - name: Save Zabbix Proxy MySQL image as file
+        run: |
+          docker save zabbix/zabbix-proxy-mysql:latest | gzip > zabbix-proxy-mysql-latest.tar.gz
+
+      - name: Pull Zabbix Web Nginx PostgreSQL image
+        run: |
+          docker pull zabbix/zabbix-web-nginx-pgsql:latest
+
+      - name: Save Zabbix Web Nginx PostgreSQL image as file
+        run: |
+          docker save zabbix/zabbix-web-nginx-pgsql:latest | gzip > zabbix-web-nginx-pgsql-latest.tar.gz
+
+      - name: Pull Prometheus Alertmanager image
+        run: |
+          docker pull prom/alertmanager:latest
+
+      - name: Save Prometheus Alertmanager image as file
+        run: |
+          docker save prom/alertmanager:latest | gzip > prom-alertmanager-latest.tar.gz
+
+      - name: Pull OpenSearch image
+        run: |
+          docker pull opensearchproject/opensearch:latest
+
+      - name: Save OpenSearch image as file
+        run: |
+          docker save opensearchproject/opensearch | gzip > opensearch-latest.tar.gz
+
+      - name: Pull Graylog image
+        run: |
+          docker pull graylog/graylog:5.2.6
+
+      - name: Save Graylog image as file
+        run: |
+          docker save graylog/graylog | gzip > graylog-5.2.6.tar.gz
+      
+      - name: Pull MongoDB image
+        run: |
+          docker pull mongo:5.0.26
+
+      - name: Save MongoDB image as file
+        run: |
+          docker save mongo | gzip > mongo-5.0.26.tar.gz
+      
+      - name: Pull MySQL image
+        run:
+          docker pull mysql/mysql-server
+  
+      - name : Save MySQL Image as file 
+        run :
+           docker save mysql/mysql-server  | gzip > mysql-8.0.36.tar.gz
