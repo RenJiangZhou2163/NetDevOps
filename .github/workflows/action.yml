@@ -22,7 +22,7 @@ jobs:
           docker save zabbix/zabbix-server-pgsql:latest | gzip > zabbix-server-pgsql-latest.tar.gz
 
       - name: Upload Zabbix Server PostgreSQL image artifact
-        uses: actions/upload-artifact@v2 
+        uses: actions/upload-artifact@v3 
         with:
           name: zabbix-server-pgsql-latest
           path: zabbix-server-pgsql-latest.tar.gz
@@ -33,7 +33,7 @@ jobs:
           docker save zabbix/zabbix-proxy-mysql:latest | gzip > zabbix-proxy-mysql-latest.tar.gz
 
       - name: Upload Zabbix Proxy MySQL image artifact
-        uses: actions/upload-artifact@v2 
+        uses: actions/upload-artifact@v3 
         with:
           name: zabbix-proxy-mysql-latest
           path: zabbix-proxy-mysql-latest.tar.gz
@@ -44,7 +44,7 @@ jobs:
           docker save zabbix/zabbix-web-nginx-pgsql:latest | gzip > zabbix-web-nginx-pgsql-latest.tar.gz
 
       - name: Upload Zabbix Web Nginx PostgreSQL image artifact
-        uses: actions/upload-artifact@v2 
+        uses: actions/upload-artifact@v3 
         with:
           name: zabbix-web-nginx-pgsql-latest
           path: zabbix-web-nginx-pgsql-latest.tar.gz
@@ -55,7 +55,7 @@ jobs:
           docker save prom/alertmanager:latest | gzip > prom-alertmanager-latest.tar.gz
 
       - name: Upload Prometheus Alertmanager image artifact
-        uses: actions/upload-artifact@v2 
+        uses: actions/upload-artifact@v3 
         with:
           name: prom-alertmanager-latest
           path: prom-alertmanager-latest.tar.gz
@@ -66,7 +66,7 @@ jobs:
            docker save opensearchproject/opensearch:latest  | gzip > opensearch-latest.tar.gz 
 
       - name: Upload OpenSearch Image Artifact 
-        uses: actions/upload-artifact@v2 
+        uses: actions/upload-artifact@v3 
         with:
           name: opensearch-latest
           path: opensearch-latest.tar.gz 
@@ -77,7 +77,7 @@ jobs:
           docker Save graylog/graylog:5.2.6 | gzip > graylog-5.2.6.tar.gz 
 
       - name: Upload Graylog Image Artifact 
-        uses: actions/upload-artifact@v2 
+        uses: actions/upload-artifact@v3 
         with:
           name: graylog-5.2.6 
           path: graylog-5.2.6.tar.gz 
@@ -88,7 +88,7 @@ jobs:
           docker Save mongo:5.0.26 | gzip > mongo-5.0.26.tar.gz 
 
       - name: Upload MongoDB Image Artifact 
-        uses: actions/upload-artifact@v2 
+        uses: actions/upload-artifact@v3 
         with:
           name: mongo-5.0.26
           path: mongo-5.0.26.tar.gz
@@ -99,7 +99,7 @@ jobs:
           docker Save mysql/mysql-server:8.0.36 | gzip > mysql-8.0.36.tar.gz 
 
       - name: Upload MySQL Image Artifact  
-        uses: actions/upload-artifact@v2  
+        uses: actions/upload-artifact@v3  
         with:
           name: mysql-8.0.36  
           ath: mysql-8.0.36.tar.gz 
