@@ -27,6 +27,7 @@ jobs:
             GF_INSTALL_PLUGINS=grafana-clock-panel,alexanderzobnin-zabbix-app,camptocamp-prometheus-alertmanager-datasource,grafana-opensearch-datasource,marcusolsson-csv-datasource,volkovlabs-grapi-datasource,marcusolsson-json-datasource,yesoreyeram-infinity-datasource
           tags:
             dashboards:latest
+          load: true
 
       - name: Save app2 Docker image as file
         run: |
