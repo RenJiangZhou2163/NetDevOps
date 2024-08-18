@@ -24,7 +24,7 @@ jobs:
       - name: Upload Zabbix Server PostgreSQL image artifact
         uses: actions/upload-artifact@v3 
         with:
-          name: zabbix-server-pgsql:latest
+          name: zabbix-server-pgsql-latest
           path: zabbix-server-pgsql-latest.tar.gz
 
       - name: Pull and save Zabbix Proxy MySQL image
@@ -35,7 +35,7 @@ jobs:
       - name: Upload Zabbix Proxy MySQL image artifact
         uses: actions/upload-artifact@v3 
         with:
-          name: zabbix-proxy-mysql:latest
+          name: zabbix-proxy-mysql-latest
           path: zabbix-proxy-mysql-latest.tar.gz
 
       - name: Pull and save Zabbix Web Nginx PostgreSQL image
@@ -46,7 +46,7 @@ jobs:
       - name: Upload Zabbix Web Nginx PostgreSQL image artifact
         uses: actions/upload-artifact@v3 
         with:
-          name: zabbix-web-nginx-pgsql:latest
+          name: zabbix-web-nginx-pgsql-latest
           path: zabbix-web-nginx-pgsql-latest.tar.gz
 
       - name: Pull and save Prometheus Alertmanager image
@@ -57,7 +57,7 @@ jobs:
       - name: Upload Prometheus Alertmanager image artifact
         uses: actions/upload-artifact@v3 
         with:
-          name: prom-alertmanager:latest
+          name: prom-alertmanager-latest
           path: prom-alertmanager-latest.tar.gz
 
       - name: Pull and save OpenSearch image
@@ -68,7 +68,7 @@ jobs:
       - name: Upload OpenSearch Image Artifact 
         uses: actions/upload-artifact@v3 
         with:
-          name: opensearch:latest
+          name: opensearch-latest
           path: opensearch-latest.tar.gz 
 
       - name: Pull and Save Graylog Image 
@@ -79,7 +79,7 @@ jobs:
       - name: Upload Graylog Image Artifact 
         uses: actions/upload-artifact@v3 
         with:
-          name: graylog:latest
+          name: graylog-latest
           path: graylog-latest.tar.gz 
 
       - name: Pull and Save MongoDB Image 
@@ -90,7 +90,7 @@ jobs:
       - name: Upload MongoDB Image Artifact 
         uses: actions/upload-artifact@v3 
         with:
-          name: mongo:5.0.26
+          name: mongo-5.0.26
           path: mongo-5.0.26.tar.gz
 
       - name: Pull and Save MySQL Image as File  
@@ -101,5 +101,5 @@ jobs:
       - name: Upload MySQL Image Artifact  
         uses: actions/upload-artifact@v3  
         with:
-          name: mysql:8.0.36  
+          name: mysql-8.0.36  
           ath: mysql-8.0.36.tar.gz 
