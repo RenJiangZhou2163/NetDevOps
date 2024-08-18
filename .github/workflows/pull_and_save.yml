@@ -1,4 +1,4 @@
-name: Zabbix - Pull and Save Multiple Docker Images
+name: Pull and Save Multiple Docker Images
 
 on:
   push:
