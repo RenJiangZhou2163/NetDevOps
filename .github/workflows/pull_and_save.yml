@@ -102,7 +102,7 @@ jobs:
           name: graylog-latest
           path: graylog-latest.tar.gz 
 
-  Common:
+  MongoDB:
     runs-on: ubuntu-latest
 
     steps:
@@ -122,6 +122,16 @@ jobs:
         with:
           name: mongo-5.0.26
           path: mongo-5.0.26.tar.gz
+
+  MySQL:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
       - name: Pull and Save MySQL Image as File  
         run: |
