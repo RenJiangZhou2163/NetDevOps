@@ -73,14 +73,14 @@ jobs:
 
       - name: Pull and Save Graylog Image 
         run: |
-          docker pull graylog/graylog:5.2.6 
-          docker save graylog/graylog:5.2.6 | gzip > graylog-5.2.6.tar.gz 
+          docker pull graylog/graylog:latest
+          docker save graylog/graylog:latest | gzip > graylog-latest.tar.gz 
 
       - name: Upload Graylog Image Artifact 
         uses: actions/upload-artifact@v3 
         with:
-          name: graylog-5.2.6 
-          path: graylog-5.2.6.tar.gz 
+          name: graylog:latest
+          path: graylog-latest.tar.gz 
 
       - name: Pull and Save MongoDB Image 
         run: |
@@ -95,8 +95,8 @@ jobs:
 
       - name: Pull and Save MySQL Image as File  
         run: |
-          docker pull mysql/mysql:8.0.36 
-          docker save mysql/mysql:8.0.36 | gzip > mysql-8.0.36.tar.gz 
+          docker pull mysql:8.0.36 
+          docker save mysql:8.0.36 | gzip > mysql-8.0.36.tar.gz 
 
       - name: Upload MySQL Image Artifact  
         uses: actions/upload-artifact@v3  
