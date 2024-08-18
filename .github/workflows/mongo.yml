@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  pull_and_save:
+  Common:
     runs-on: ubuntu-latest
 
     steps:
