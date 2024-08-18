@@ -90,16 +90,16 @@ jobs:
       - name: Upload MongoDB Image Artifact 
         uses: actions/upload-artifact@v3 
         with:
-          name: mongo-5.0.26
+          name: mongo:5.0.26
           path: mongo-5.0.26.tar.gz
 
       - name: Pull and Save MySQL Image as File  
         run: |
-          docker pull mysql/mysql-server:8.0.36 
-          docker save mysql/mysql-server:8.0.36 | gzip > mysql-8.0.36.tar.gz 
+          docker pull mysql/mysql:8.0.36 
+          docker save mysql/mysql:8.0.36 | gzip > mysql-8.0.36.tar.gz 
 
       - name: Upload MySQL Image Artifact  
         uses: actions/upload-artifact@v3  
         with:
-          name: mysql-8.0.36  
+          name: mysql:8.0.36  
           ath: mysql-8.0.36.tar.gz 
