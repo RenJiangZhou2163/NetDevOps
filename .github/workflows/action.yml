@@ -27,81 +27,81 @@ jobs:
           name: zabbix-server-pgsql-latest
           path: zabbix-server-pgsql-latest.tar.gz
 
-      - name: Pull and save Zabbix Proxy MySQL image
-        run: |
-          docker pull zabbix/zabbix-proxy-mysql:latest
-          docker save zabbix/zabbix-proxy-mysql:latest | gzip > zabbix-proxy-mysql-latest.tar.gz
+      # - name: Pull and save Zabbix Proxy MySQL image
+      #   run: |
+      #     docker pull zabbix/zabbix-proxy-mysql:latest
+      #     docker save zabbix/zabbix-proxy-mysql:latest | gzip > zabbix-proxy-mysql-latest.tar.gz
 
-      - name: Upload Zabbix Proxy MySQL image artifact
-        uses: actions/upload-artifact@v2 
-        with:
-          name: zabbix-proxy-mysql-latest
-          path: zabbix-proxy-mysql-latest.tar.gz
+      # - name: Upload Zabbix Proxy MySQL image artifact
+      #   uses: actions/upload-artifact@v2 
+      #   with:
+      #     name: zabbix-proxy-mysql-latest
+      #     path: zabbix-proxy-mysql-latest.tar.gz
 
-      - name: Pull and save Zabbix Web Nginx PostgreSQL image
-        run: |
-          docker pull zabbix/zabbix-web-nginx-pgsql:latest
-          docker save zabbix/zabbix-web-nginx-pgsql:latest | gzip > zabbix-web-nginx-pgsql-latest.tar.gz
+      # - name: Pull and save Zabbix Web Nginx PostgreSQL image
+      #   run: |
+      #     docker pull zabbix/zabbix-web-nginx-pgsql:latest
+      #     docker save zabbix/zabbix-web-nginx-pgsql:latest | gzip > zabbix-web-nginx-pgsql-latest.tar.gz
 
-      - name: Upload Zabbix Web Nginx PostgreSQL image artifact
-        uses: actions/upload-artifact@v2 
-        with:
-          name: zabbix-web-nginx-pgsql-latest
-          path: zabbix-web-nginx-pgsql-latest.tar.gz
+      # - name: Upload Zabbix Web Nginx PostgreSQL image artifact
+      #   uses: actions/upload-artifact@v2 
+      #   with:
+      #     name: zabbix-web-nginx-pgsql-latest
+      #     path: zabbix-web-nginx-pgsql-latest.tar.gz
 
-      - name: Pull and save Prometheus Alertmanager image
-        run: |
-          docker pull prom/alertmanager:latest
-          docker save prom/alertmanager:latest | gzip > prom-alertmanager-latest.tar.gz
+      # - name: Pull and save Prometheus Alertmanager image
+      #   run: |
+      #     docker pull prom/alertmanager:latest
+      #     docker save prom/alertmanager:latest | gzip > prom-alertmanager-latest.tar.gz
 
-      - name: Upload Prometheus Alertmanager image artifact
-        uses: actions/upload-artifact@v2 
-        with:
-          name: prom-alertmanager-latest
-          path: prom-alertmanager-latest.tar.gz
+      # - name: Upload Prometheus Alertmanager image artifact
+      #   uses: actions/upload-artifact@v2 
+      #   with:
+      #     name: prom-alertmanager-latest
+      #     path: prom-alertmanager-latest.tar.gz
 
-      - name: Pull and save OpenSearch image
-        run : |
-           docker pull opensearchproject/opensearch:latest
-           docker save opensearchproject/opensearch:latest  | gzip > opensearch-latest.tar.gz 
+      # - name: Pull and save OpenSearch image
+      #   run : |
+      #      docker pull opensearchproject/opensearch:latest
+      #      docker save opensearchproject/opensearch:latest  | gzip > opensearch-latest.tar.gz 
 
-       -name: Upload OpenSearch Image Artifact 
-        uses: actions/upload-artifact@v2 
-        with:
-          name: opensearch-latest
-          path: opensearch-latest.tar.gz 
+      #  -name: Upload OpenSearch Image Artifact 
+      #   uses: actions/upload-artifact@v2 
+      #   with:
+      #     name: opensearch-latest
+      #     path: opensearch-latest.tar.gz 
 
-       -name: Pull and Save Graylog Image 
-        run:
-          docker Pull graylog/graylog:5.2.6 
-          docker Save graylog/graylog:5.2.6 | gzip > graylog-5.2.6.tar.gz 
+      #  -name: Pull and Save Graylog Image 
+      #   run:
+      #     docker Pull graylog/graylog:5.2.6 
+      #     docker Save graylog/graylog:5.2.6 | gzip > graylog-5.2.6.tar.gz 
 
-       -name: Upload Graylog Image Artifact 
-        uses: actions/upload-artifact @ v2 
-        with:
-          name: graylog-5.2.6 
-          path: graylog-5.2.6.tar.gz 
+      #  -name: Upload Graylog Image Artifact 
+      #   uses: actions/upload-artifact @ v2 
+      #   with:
+      #     name: graylog-5.2.6 
+      #     path: graylog-5.2.6.tar.gz 
 
-       -name: Pull and Save MongoDB Image 
-        run:
-          docker Pull mongo:5.0.26 
-          docker Save mongo:5.0.26 | gzip > mongo-5.0.26.tar.gz 
+      #  -name: Pull and Save MongoDB Image 
+      #   run:
+      #     docker Pull mongo:5.0.26 
+      #     docker Save mongo:5.0.26 | gzip > mongo-5.0.26.tar.gz 
 
-       -name: Upload MongoDB Image Artifact 
-        uses: actions/upload-artifact@v2 
-        with:
-          name: mongo-5.0.26
-          path: mongo-5.0.26.tar.gz
+      #  -name: Upload MongoDB Image Artifact 
+      #   uses: actions/upload-artifact@v2 
+      #   with:
+      #     name: mongo-5.0.26
+      #     path: mongo-5.0.26.tar.gz
 
-       -name: Pull and Save MySQL Image as File  
-        run:
-          docker Pull mysql/mysql-server:8.0.36 
-          docker Save mysql/mysql-server:8.0.36 | gzip > mysql-8.0.36.tar.gz 
+      #  -name: Pull and Save MySQL Image as File  
+      #   run:
+      #     docker Pull mysql/mysql-server:8.0.36 
+      #     docker Save mysql/mysql-server:8.0.36 | gzip > mysql-8.0.36.tar.gz 
 
-       -name: Upload MySQL Image Artifact  
-        uses: actions/upload-artifact@v2  
-        with:
-          name: mysql-8.0.36  
-          ath: mysql-8.0.36.tar.gz 
+      #  -name: Upload MySQL Image Artifact  
+      #   uses: actions/upload-artifact@v2  
+      #   with:
+      #     name: mysql-8.0.36  
+      #     ath: mysql-8.0.36.tar.gz 
 
 
