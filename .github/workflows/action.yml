@@ -73,8 +73,8 @@ jobs:
 
       - name: Pull and Save Graylog Image 
         run: |
-          docker pull graylog/graylog:latest
-          docker save graylog/graylog:latest | gzip > graylog-latest.tar.gz 
+          docker pull graylog/graylog:6.0.5
+          docker save graylog/graylog:6.0.5 | gzip > graylog-latest.tar.gz 
 
       - name: Upload Graylog Image Artifact 
         uses: actions/upload-artifact@v3 
