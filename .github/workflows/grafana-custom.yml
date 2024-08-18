@@ -1,0 +1,36 @@
+name: Pull and Save Multiple Docker Images
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  Grafana2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2 
+        with:
+          context: .
+          file: ./packing/docker/custom/Dockerfile.grafana
+          push: true
+          tags: dashboards:latest
+
+      - name: Save app2 Docker image as file
+        run: |
+          docker save dashboards:latest | gzip > dashboards-latest.tar.gz
+
+      - name: Upload Grafana Image Artifact  
+        uses: actions/upload-artifact@v4 
+        with:
+          name: dashboards-latest
+          path: dashboards-latest.tar.gz
