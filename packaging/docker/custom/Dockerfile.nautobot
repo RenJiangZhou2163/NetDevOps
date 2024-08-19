@@ -26,7 +26,7 @@ RUN pip install napalm-h3c-comware && \
     pip install napalm-ce
 
 USER nautobot
-COPY --chown=nautobot nautobot_config.py /opt/nautobot/nautobot_config.py
+# COPY --chown=nautobot nautobot_config.py /opt/nautobot/nautobot_config.py
 RUN mkdir -p /opt/nautobot/media/devicetype-images && \
     mkdir -p /opt/nautobot/media/image-attachments
 RUN chown -R nautobot:nautobot /opt/nautobot/media
