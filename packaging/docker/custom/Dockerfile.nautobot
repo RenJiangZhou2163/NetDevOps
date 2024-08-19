@@ -1,0 +1,32 @@
+#FROM networktocode/nautobot
+FROM dockerproxy.cn/networktocode/nautobot:2.3.0-py3.11
+
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade pip 
+RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
+RUN pip install nautobot-bgp-models && \
+    pip install nautobot-chatops && \
+    pip install nautobot-capacity-metrics && \
+    pip install nautobot-circuit-maintenance && \
+    pip install nautobot-data-validation-engine && \
+    pip install nautobot-design-builder && \
+    pip install nautobot-device-lifecycle-mgmt && \
+    pip install nautobot-device-onboarding && \
+    pip install nautobot-firewall-models && \
+    pip install nautobot-floor-plan && \
+    pip install nautobot-golden-config && \
+    pip install nautobot-plugin-nornir && \
+    pip install nautobot-ssot && \
+    pip install nautobot-ssot[all] && \
+    pip install nautobot-ui-plugin==1.0.0 && \
+    pip install nautobot-type-reapply
+
+RUN pip install napalm-h3c-comware && \
+    pip install napalm-huawei-vrp && \
+    pip install napalm-ce
+
+USER nautobot
+COPY --chown=nautobot nautobot_config.py /opt/nautobot/nautobot_config.py
+RUN mkdir -p /opt/nautobot/media/devicetype-images && \
+    mkdir -p /opt/nautobot/media/image-attachments
+RUN chown -R nautobot:nautobot /opt/nautobot/media

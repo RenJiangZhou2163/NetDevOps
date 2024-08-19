@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-  Grafana2:
+  Grafana:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,7 +29,7 @@ jobs:
             dashboards:latest
           load: true
 
-      - name: Save app2 Docker image as file
+      - name: Save Grafana Docker image as file
         run: |
           docker save dashboards:latest | gzip > dashboards-latest.tar.gz
 
