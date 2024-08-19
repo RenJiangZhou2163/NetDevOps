@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-  Grafana:
+  Nautobot:
     runs-on: ubuntu-latest
 
     steps:
