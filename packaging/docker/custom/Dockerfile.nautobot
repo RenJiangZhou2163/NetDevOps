@@ -1,8 +1,7 @@
-#FROM networktocode/nautobot
-FROM dockerproxy.cn/networktocode/nautobot:latest-py3.11
+FROM networktocode/nautobot:latest-py3.11
 
-RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade pip 
-RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+# RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade pip 
+# RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
 RUN pip install nautobot-bgp-models && \
     pip install nautobot-chatops && \
