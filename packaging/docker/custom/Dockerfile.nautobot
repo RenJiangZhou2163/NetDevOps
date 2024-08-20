@@ -1,5 +1,5 @@
 #FROM networktocode/nautobot
-FROM dockerproxy.cn/networktocode/nautobot:2.3.0-py3.11
+FROM dockerproxy.cn/networktocode/nautobot:latest-py3.11
 
 RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade pip 
 RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
