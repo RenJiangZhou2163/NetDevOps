@@ -49,6 +49,7 @@ PLUGINS = [
     "nautobot_design_builder",
     # "nautobot_ui_plugin",     # 当前版本不适配Nautobot2.3.x
     "nautobot_type_reapply",
+    "nautobot_sfp_inventory",
 ]
 
 # Plugins configuration settings. These settings are used by various plugins that the user may have installed.

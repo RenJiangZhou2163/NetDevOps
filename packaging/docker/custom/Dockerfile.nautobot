@@ -18,7 +18,8 @@ RUN pip install nautobot-bgp-models && \
     pip install nautobot-ssot && \
     pip install nautobot-ssot[all] && \
     pip install nautobot-ui-plugin==1.0.0 && \
-    pip install nautobot-type-reapply
+    pip install nautobot-type-reapply && \
+    pip install nautobot-sfp-inventory
 
 RUN pip install napalm-h3c-comware && \
     pip install napalm-huawei-vrp && \
