@@ -24,7 +24,7 @@ jobs:
       - name: Pull and save Zabbix Server PostgreSQL image
         run: |
           docker pull zabbix/zabbix-server-pgsql:latest
-          docker save zabbix/zabbix-server-pgsql:latest | gzip > zabbix-server-pgsql-latest.tar.gz
+          docker save zabbix/zabbix-server-pgsql:latest zabbix-server-pgsql-latest.tar.gz
 
       - name: Upload Zabbix Server PostgreSQL image artifact
         uses: actions/upload-artifact@v4
@@ -35,7 +35,7 @@ jobs:
       - name: Pull and save Zabbix Proxy MySQL image
         run: |
           docker pull zabbix/zabbix-proxy-mysql:latest
-          docker save zabbix/zabbix-proxy-mysql:latest | gzip > zabbix-proxy-mysql-latest.tar.gz
+          docker save zabbix/zabbix-proxy-mysql:latest zabbix-proxy-mysql-latest.tar.gz
 
       - name: Upload Zabbix Proxy MySQL image artifact
         uses: actions/upload-artifact@v4
@@ -46,7 +46,7 @@ jobs:
       - name: Pull and save Zabbix Web Nginx PostgreSQL image
         run: |
           docker pull zabbix/zabbix-web-nginx-pgsql:latest
-          docker save zabbix/zabbix-web-nginx-pgsql:latest | gzip > zabbix-web-nginx-pgsql-latest.tar.gz
+          docker save zabbix/zabbix-web-nginx-pgsql:latest zabbix-web-nginx-pgsql-latest.tar.gz
 
       - name: Upload Zabbix Web Nginx PostgreSQL image artifact
         uses: actions/upload-artifact@v4
@@ -67,7 +67,7 @@ jobs:
       - name: Pull and save Prometheus Alertmanager image
         run: |
           docker pull prom/alertmanager:latest
-          docker save prom/alertmanager:latest | gzip > prom-alertmanager-latest.tar.gz
+          docker save prom/alertmanager:latest prom-alertmanager-latest.tar.gz
 
       - name: Upload Prometheus Alertmanager image artifact
         uses: actions/upload-artifact@v4
@@ -88,7 +88,7 @@ jobs:
       - name: Pull and save OpenSearch image
         run: |
            docker pull opensearchproject/opensearch:latest
-           docker save opensearchproject/opensearch:latest  | gzip > opensearch-latest.tar.gz 
+           docker save opensearchproject/opensearch:latest  opensearch-latest.tar.gz 
 
       - name: Upload OpenSearch Image Artifact 
         uses: actions/upload-artifact@v4
@@ -99,7 +99,7 @@ jobs:
       - name: Pull and Save Graylog Image 
         run: |
           docker pull graylog/graylog:6.0.5
-          docker save graylog/graylog:6.0.5 | gzip > graylog-latest.tar.gz 
+          docker save graylog/graylog:6.0.5 graylog-latest.tar.gz 
 
       - name: Upload Graylog Image Artifact 
         uses: actions/upload-artifact@v4
@@ -120,7 +120,7 @@ jobs:
       - name: Pull and Save MongoDB Image 
         run: |
           docker pull mongo:5.0.26 
-          docker save mongo:5.0.26 | gzip > mongo-5.0.26.tar.gz 
+          docker save mongo:5.0.26 mongo-5.0.26.tar.gz 
 
       - name: Upload MongoDB Image Artifact 
         uses: actions/upload-artifact@v4
@@ -141,7 +141,7 @@ jobs:
       - name: Pull and Save MySQL Image as File  
         run: |
           docker pull mysql:8.0.36 
-          docker save mysql:8.0.36 | gzip > mysql-8.0.36.tar.gz 
+          docker save mysql:8.0.36 mysql-8.0.36.tar.gz 
 
       - name: Upload MySQL Image Artifact  
         uses: actions/upload-artifact@v4 
@@ -163,7 +163,7 @@ jobs:
       - name: Pull and Save Grafana Image as File  
         run: |
           docker pull grafana/grafana:latest
-          docker save grafana/grafana:latest | gzip > grafana-latest.tar.gz
+          docker save grafana/grafana:latest grafana-latest.tar.gz
 
       - name: Upload Grafana Image Artifact  
         uses: actions/upload-artifact@v4 
@@ -184,7 +184,7 @@ jobs:
       - name: Pull and Save Grafana Image as File  
         run: |
           docker pull netboxcommunity/netbox:latest
-          docker save netboxcommunity/netbox:latest | gzip > netbox-latest.tar.gz
+          docker save netboxcommunity/netbox:latest netbox-latest.tar.gz
 
       - name: Upload Grafana Image Artifact  
         uses: actions/upload-artifact@v4 
@@ -205,7 +205,7 @@ jobs:
       - name: Pull and Save Grafana OnCall Image as File  
         run: |
           docker pull grafana/oncall:latest
-          docker save grafana/oncall:latest | gzip > grafana-oncall-latest.tar.gz
+          docker save grafana/oncall:latest grafana-oncall-latest.tar.gz
 
       - name: Upload Grafana OnCall Image Artifact  
         uses: actions/upload-artifact@v4 
