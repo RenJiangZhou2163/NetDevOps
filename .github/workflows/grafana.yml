@@ -1,5 +1,5 @@
 # Pull and Save Grafana Docker Images
-name: Pull and Save Grafana Docker Images
+name: Grafana
 
 on:
   push:
