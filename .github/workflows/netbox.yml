@@ -22,7 +22,7 @@ jobs:
       - name: Pull and Save Grafana Image as File  
         run: |
           docker pull netboxcommunity/netbox:latest
-          docker save netboxcommunity/netbox:latest netbox-latest.tar.gz
+          docker save -o netboxcommunity/netbox:latest netbox-latest.tar.gz
 
       - name: Upload Grafana Image Artifact  
         uses: actions/upload-artifact@v4 

@@ -22,7 +22,7 @@ jobs:
       - name: Pull and Save MongoDB Image 
         run: |
           docker pull mongo:5.0.26 
-          docker save mongo:5.0.26 mongo-5.0.26.tar.gz 
+          docker save -o mongo:5.0.26 mongo-5.0.26.tar.gz 
 
       - name: Upload MongoDB Image Artifact 
         uses: actions/upload-artifact@v4
@@ -43,7 +43,7 @@ jobs:
       - name: Pull and Save MySQL Image as File  
         run: |
           docker pull mysql:8.0.36 
-          docker save mysql:8.0.36 mysql-8.0.36.tar.gz 
+          docker save -o mysql:8.0.36 mysql-8.0.36.tar.gz 
 
       - name: Upload MySQL Image Artifact  
         uses: actions/upload-artifact@v4 

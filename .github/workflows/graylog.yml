@@ -22,7 +22,7 @@ jobs:
       - name: Pull and save OpenSearch image
         run: |
            docker pull opensearchproject/opensearch:latest
-           docker save opensearchproject/opensearch:latest  opensearch-latest.tar.gz 
+           docker save -o opensearchproject/opensearch:latest  opensearch-latest.tar.gz 
 
       - name: Upload OpenSearch Image Artifact 
         uses: actions/upload-artifact@v4
@@ -33,7 +33,7 @@ jobs:
       - name: Pull and Save Graylog Image 
         run: |
           docker pull graylog/graylog:6.0.5
-          docker save graylog/graylog:6.0.5 graylog-latest.tar.gz 
+          docker save -o graylog/graylog:6.0.5 graylog-latest.tar.gz 
 
       - name: Upload Graylog Image Artifact 
         uses: actions/upload-artifact@v4

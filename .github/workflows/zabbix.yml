@@ -24,7 +24,7 @@ jobs:
       - name: Pull and save Zabbix Server PostgreSQL image
         run: |
           docker pull zabbix/zabbix-server-pgsql:latest
-          docker save zabbix/zabbix-server-pgsql:latest zabbix-server-pgsql-latest.tar.gz
+          docker save -o zabbix/zabbix-server-pgsql:latest zabbix-server-pgsql-latest.tar.gz
 
       - name: Upload Zabbix Server PostgreSQL image artifact
         uses: actions/upload-artifact@v4
@@ -35,7 +35,7 @@ jobs:
       - name: Pull and save Zabbix Proxy MySQL image
         run: |
           docker pull zabbix/zabbix-proxy-mysql:latest
-          docker save zabbix/zabbix-proxy-mysql:latest zabbix-proxy-mysql-latest.tar.gz
+          docker save -o zabbix/zabbix-proxy-mysql:latest zabbix-proxy-mysql-latest.tar.gz
 
       - name: Upload Zabbix Proxy MySQL image artifact
         uses: actions/upload-artifact@v4
@@ -46,7 +46,7 @@ jobs:
       - name: Pull and save Zabbix Web Nginx PostgreSQL image
         run: |
           docker pull zabbix/zabbix-web-nginx-pgsql:latest
-          docker save zabbix/zabbix-web-nginx-pgsql:latest zabbix-web-nginx-pgsql-latest.tar.gz
+          docker save -o zabbix/zabbix-web-nginx-pgsql:latest zabbix-web-nginx-pgsql-latest.tar.gz
 
       - name: Upload Zabbix Web Nginx PostgreSQL image artifact
         uses: actions/upload-artifact@v4
