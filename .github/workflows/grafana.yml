@@ -1,4 +1,4 @@
-name: Pull and Save Multiple Docker Images
+name: Pull and Save Grafana Docker Images
 
 on:
   push:

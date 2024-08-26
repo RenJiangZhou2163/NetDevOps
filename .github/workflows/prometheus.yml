@@ -1,4 +1,4 @@
-name: Prometheus Custom
+name: Prometheus
 
 on:
   push:
