@@ -42,7 +42,7 @@ jobs:
       - name: Pull and save Prometheus Alertmanager image
         run: |
           docker pull prom/alertmanager:latest
-          docker save -o prom/alertmanager:latest prom-alertmanager-latest.tar.gz
+          docker save -o prom-alertmanager-latest.tar.gz prom/alertmanager:latest
 
       - name: Upload Prometheus Alertmanager image artifact
         uses: actions/upload-artifact@v4
