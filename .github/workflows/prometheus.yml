@@ -1,4 +1,5 @@
-name: Prometheus
+# Pull and Save NetBox Docker Images
+name: Prometheus Docker Images
 
 on:
   push:

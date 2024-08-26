@@ -1,4 +1,5 @@
-name: Pull and Save Multiple Docker Images
+# Pull and Save NetBox Docker Images
+name: NetBox Docker Images
 
 on:
   push:
