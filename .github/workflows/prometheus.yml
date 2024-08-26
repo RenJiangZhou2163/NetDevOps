@@ -1,4 +1,4 @@
-name: Nautobot Custom
+name: Prometheus Custom
 
 on:
   push:
