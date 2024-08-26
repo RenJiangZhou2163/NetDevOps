@@ -27,7 +27,7 @@ jobs:
       - name: Upload MongoDB Image Artifact 
         uses: actions/upload-artifact@v4
         with:
-          name: mongo-5.0.26
+          name: mongo:5.0.26
           path: mongo-5.0.26.tar.gz
 
   MySQL:
@@ -48,5 +48,5 @@ jobs:
       - name: Upload MySQL Image Artifact  
         uses: actions/upload-artifact@v4 
         with:
-          name: mysql-8.0.36  
+          name: mysql:8.0.36  
           path: mysql-8.0.36.tar.gz 
