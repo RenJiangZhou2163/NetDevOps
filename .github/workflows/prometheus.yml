@@ -1,4 +1,4 @@
-# Pull and Save NetBox Docker Images
+# Pull and Save Prometheus Docker Images
 name: Prometheus Docker Images
 
 on:
@@ -21,7 +21,7 @@ jobs:
       - name: Pull and save Prometheus image
         run: |
           docker pull prom/prometheus:latest
-          docker save -o prom/prometheus:latest prom-prometheus-latest.tar.gz
+          docker save -o prom-prometheus-latest.tar.gz prom/prometheus:latest
 
       - name: Upload Prometheus image artifact
         uses: actions/upload-artifact@v4
