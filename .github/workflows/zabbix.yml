@@ -1,4 +1,5 @@
-name: Pull and Save Zabbix Docker Images
+# Pull and Save Zabbix Docker Images
+name: Zabbix
 
 on:
   push:
