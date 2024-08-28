@@ -73,8 +73,8 @@ PLUGINS_CONFIG = {
     "nautobot_circuit_maintenance": {
         "raw_notification_initial_days_since": 100,
         "raw_notification_size": 16384,
-        "dashboard_n_days": 30,
-        "overlap_job_exclude_no_impact": False,
+        "dashboard_n_days": 30,  # Defaults to 30 days in the configurations, change/override here
+        "overlap_job_exclude_no_impact": False, # Exclude in job warnings the impact of `No-Impact`
         "notification_sources": []
     },
     "nautobot_data_validation_engine": {},
