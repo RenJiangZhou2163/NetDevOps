@@ -47,7 +47,10 @@ PLUGINS = [
     "nautobot_bgp_models",
     "nautobot_floor_plan",
     "nautobot_design_builder",
+    "welcome_wizard",
     # "nautobot_ui_plugin",     # 当前版本不适配Nautobot2.3.x
+
+    # 以下是三方插件
     "nautobot_type_reapply",
     "nautobot_sfp_inventory",
 ]
@@ -116,5 +119,9 @@ PLUGINS_CONFIG = {
                 },
             },
         },
-    }
+    },
+  "welcome_wizard": {
+    "enable_devicetype-library": True,
+    "enable_welcome_banner": True,
+  }
 }
