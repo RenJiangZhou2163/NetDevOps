@@ -45,15 +45,7 @@ RUN if [ $GF_INSTALL_IMAGE_RENDERER_PLUGIN = "true" ]; then \
       fi \
     fi
 
-ARG GF_INSTALL_PLUGINS=grafana-clock-panel,alexanderzobnin-zabbix-app, \
-  camptocamp-prometheus-alertmanager-datasource, \
-  grafana-opensearch-datasource, \
-  marcusolsson-csv-datasource, \
-  volkovlabs-grapi-datasource, \
-  marcusolsson-json-datasource, \
-  yesoreyeram-infinity-datasource, \
-  grafana-image-renderer
-
+ARG GF_INSTALL_PLUGINS=""
 
 RUN if [ ! -z "${GF_INSTALL_PLUGINS}" ]; then \
       OLDIFS=$IFS; \
