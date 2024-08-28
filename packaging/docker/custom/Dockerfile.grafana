@@ -45,8 +45,7 @@ RUN if [ $GF_INSTALL_IMAGE_RENDERER_PLUGIN = "true" ]; then \
       fi \
     fi
 
-ARG GF_INSTALL_PLUGINS=grafana-clock-panel, \
-  alexanderzobnin-zabbix-app, \
+ARG GF_INSTALL_PLUGINS=grafana-clock-panel, alexanderzobnin-zabbix-app, \
   camptocamp-prometheus-alertmanager-datasource, \
   grafana-opensearch-datasource, \
   marcusolsson-csv-datasource, \
