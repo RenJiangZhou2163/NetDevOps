@@ -1,4 +1,4 @@
-name: Nautobot Custom
+name: Nautobot
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 
 jobs:
 
-  Nautobot:
+  Nautobot-Custom:
     runs-on: ubuntu-latest
 
     steps:
