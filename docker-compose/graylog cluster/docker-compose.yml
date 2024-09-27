@@ -54,7 +54,7 @@ services:
         ipv4_address: 172.20.0.3
 
   graylog:
-    image: "${GRAYLOG_IMAGE:-graylog/graylog:5.2}"
+    image: "${GRAYLOG_IMAGE:-graylog/graylog:6.0}"
     container_name: graylog1
     hostname: graylog1
     depends_on:
