@@ -24,24 +24,34 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Pull and save OpenSearch image
-        run: |
-           docker pull opensearchproject/opensearch:latest
-           docker save -o opensearch-latest.tar.gz opensearchproject/opensearch:latest
-
-      - name: Upload OpenSearch Image Artifact 
-        uses: actions/upload-artifact@v4
-        with:
-          name: opensearch-latest
-          path: opensearch-latest.tar.gz 
-
       - name: Pull and Save Graylog Image 
         run: |
-          docker pull graylog/graylog:6.0.5
-          docker save -o graylog-latest.tar.gz graylog/graylog:6.0.5
+          docker pull graylog/graylog:6.0
+          docker save -o graylog-6.0.tar.gz graylog/graylog:6.0
 
       - name: Upload Graylog Image Artifact 
         uses: actions/upload-artifact@v4
         with:
           name: graylog-latest
           path: graylog-latest.tar.gz 
+
+  OpenSearch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Pull and save OpenSearch image
+        run: |
+            docker pull opensearchproject/opensearch:latest
+            docker save -o opensearch-latest.tar.gz opensearchproject/opensearch:latest
+
+      - name: Upload OpenSearch Image Artifact 
+        uses: actions/upload-artifact@v4
+        with:
+          name: opensearch-latest
+          path: opensearch-latest.tar.gz 
