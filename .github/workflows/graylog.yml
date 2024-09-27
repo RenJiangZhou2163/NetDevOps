@@ -3,7 +3,7 @@
 # https://hub.docker.com/u/graylog
 # https://hub.docker.com/r/opensearchproject/opensearch
 
-name: Pull and Save Graylog Docker Images
+name: Graylog
 
 on:
   push:
@@ -32,8 +32,8 @@ jobs:
       - name: Upload Graylog Image Artifact 
         uses: actions/upload-artifact@v4
         with:
-          name: graylog-latest
-          path: graylog-latest.tar.gz 
+          name: graylog-6.0
+          path: graylog-6.0.tar.gz
 
   OpenSearch:
     runs-on: ubuntu-latest
