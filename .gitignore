@@ -6,3 +6,4 @@ docker-compose/NetBox/env/*
 /.env
 *.env
 **/.env
+docker-compose/Graylog2/single-node/.env
