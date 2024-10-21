@@ -1,0 +1,78 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Build project
+      run: |
+        # 这里添加你的构建命令
+        mkdir -p output
+
+        # Nginx
+        docker pull nginx:stable
+        docker save -o output/nginx-stable.tar.gz nginx:stable
+
+        # PostgreSQL
+        docker pull postgres:latest
+        docker save -o output/postgres-latest.tar.gz postgres:latest
+
+        # MySQL
+        docker pull mysql:8.0.36 
+        docker save -o output/mysql-8.0.36.tar.gz mysql:8.0.36
+
+        # MongoDB
+        docker pull mongo:5.0.26 
+        docker save -o output/mongo-5.0.26.tar.gz mongo:5.0.26
+        
+        # Graylog
+        docker pull graylog/graylog:6.1
+        docker save -o output/graylog-6.1.tar.gz graylog/graylog:6.1
+
+        # Graylog-OpenSearch
+        docker pull opensearchproject/opensearch:2.15.0
+        docker save -o output/opensearch-2.15.0.tar.gz opensearchproject/opensearch:2.15.0
+        
+        # Graylog-DataNode
+        docker pull graylog/graylog-datanode:6.1
+        docker save -o output/graylog-datanode-6.1.tar.gz graylog/graylog-datanode:6.1
+
+        # Prometheus
+        docker pull prom/prometheus:latest
+        docker save -o output/prom-prometheus-latest.tar.gz prom/prometheus:latest
+      
+        # Prometheus-ALertmanager
+        docker pull prom/alertmanager:latest
+        docker save -o output/prom-alertmanager-latest.tar.gz prom/alertmanager:latest
+        
+        # Zabbix-Server
+        docker pull zabbix/zabbix-server-pgsql:latest
+        docker save -o output/zabbix-server-pgsql-latest.tar.gz zabbix/zabbix-server-pgsql:latest
+                   
+        # Zabbix-Proxy
+        docker pull zabbix/zabbix-proxy-mysql:latest
+        docker save -o output/zabbix-proxy-mysql-latest.tar.gz zabbix/zabbix-proxy-mysql:latest
+        
+        # Zabbix-Web
+        docker pull zabbix/zabbix-web-nginx-pgsql:latest
+        docker save -o output/zabbix-web-nginx-pgsql-latest.tar.gz zabbix/zabbix-web-nginx-pgsql:latest
+  
+    - name: Create Release
+      id: create_release
+      run: |
+        gh release create "$tag" \
+          output/* \
+          --title="${tag#v}" \
+          --notes "update"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        tag: ${{ github.ref_name }}

@@ -1,0 +1,106 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: "mongo:5.0"
+    container_name: mongodb1
+    hostname: mongodb1
+    restart: "always"
+    command: ["mongod", "--bind_ip_all", "--replSet", "rs0", "--keyFile", "/etc/mongodb/keys/keyfile"]
+    ports:
+      - "27017:27017/tcp"
+    volumes:
+      - "mongodb-data:/data/db"
+      - "./mongodb/keyfile:/etc/mongodb/keys/keyfile"
+      - "./mongodb/initdb.d:/docker-entrypoint-initdb.d"
+      - "./mongodb/init-replset.js:/init-replset.js"
+      - "./mongodb/init-user.sh:/init-user.sh"
+    networks:
+      graylog:
+        ipv4_address: 172.20.0.2
+  
+  opensearch:
+    image: "opensearchproject/opensearch:latest"
+    container_name: opensearch-node1
+    hostname: opensearch-node1
+    restart: always
+    environment:
+      - cluster.name=opensearch-cluster # Name the cluster
+      - node.name=opensearch-node1 # Name the node that will run in this container
+      - bootstrap.memory_lock=true # Disable JVM heap memory swapping
+
+      # 根据部署环境修改
+      - "OPENSEARCH_JAVA_OPTS=-Xms4G -Xmx4G" # Set min and max JVM heap sizes to at least 50% of system RAM
+      - network.publish_host=10.32.134.76
+      - discovery.seed_hosts=10.32.134.76,10.32.133.198,10.32.138.166 # Nodes to look for when discovering the cluster
+      - cluster.initial_cluster_manager_nodes=10.32.134.76,10.32.133.198,10.32.138.166 # Nodes eligible to serve as cluster manager
+      - plugins.security.disabled=true
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=ChangeMe_123
+    ulimits:
+      memlock:
+        soft: -1 # Set memlock to unlimited (no soft or hard limit)
+        hard: -1
+      nofile:
+        soft: 65536 # Maximum number of open files for the opensearch user - set to at least 65536
+        hard: 65536
+    volumes:
+      - opensearch-data:/usr/share/opensearch/data # Creates volume called opensearch-data1 and mounts it to the container
+    ports:
+      - 9200:9200 # REST API
+      - 9300:9300
+      - 9600:9600  # required for Performance Analyzer
+    networks:
+      graylog:
+        ipv4_address: 172.20.0.3
+
+  graylog:
+    image: "${GRAYLOG_IMAGE:-graylog/graylog:6.0}"
+    container_name: graylog1
+    hostname: graylog1
+    depends_on:
+      - "mongodb"
+      - "opensearch"  
+    restart: "always"
+    entrypoint: "/docker-entrypoint.sh"
+    environment:
+      #GRAYLOG_IS_MASTER: "true"
+      GRAYLOG_IS_LEADER: "true"
+      GRAYLOG_NODE_ID_FILE: "/usr/share/graylog/data/data/node-id"
+      GRAYLOG_PASSWORD_SECRET: "${GRAYLOG_PASSWORD_SECRET:?Please configure GRAYLOG_PASSWORD_SECRET in the .env file}"
+      GRAYLOG_ROOT_PASSWORD_SHA2: "${GRAYLOG_ROOT_PASSWORD_SHA2:?Please configure GRAYLOG_ROOT_PASSWORD_SHA2 in the .env file}"
+      GRAYLOG_HTTP_EXTERNAL_URI: "http://127.0.0.1:9000/"
+      
+      # 根据部署环境修改 
+      GRAYLOG_MONGODB_URI: "mongodb://graylog:Graylog%4012#$@10.32.134.76:27017,10.32.133.198:27017,10.32.138.166:27017/graylog"
+      GRAYLOG_ELASTICSEARCH_HOSTS: "http://10.32.134.76:9200,http://10.32.133.198:9200,http://10.32.138.166:9200"
+    ports:
+      - "9000:9000"        # Graylog web interface and REST API
+      - "1514:1514"        # Syslog TCP
+      - "1514:1514/udp"    # Syslog UDP
+      - "2055:2055/udp"    # Netflow UDP
+      - "12201:12201"      # GELF TCP
+      - "12201:12201/udp"  # GELF UDP
+    volumes:
+      - "graylog-data:/usr/share/graylog/data/data"
+      - "graylog-journal:/usr/share/graylog/data/journal"
+    networks:
+      graylog:
+        ipv4_address: 172.20.0.4
+
+
+networks:
+  graylog:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+
+volumes:
+  mongodb-data:
+  opensearch-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /data
+  graylog-data:
+  graylog-journal:
