@@ -33,6 +33,10 @@ jobs:
         # MongoDB
         docker pull mongo:5.0.26 
         docker save -o output/mongo-5.0.26.tar.gz mongo:5.0.26
+
+        # Redis
+        docker pull redis:7-alpine
+        docker save -o output/redis-7-alpine.tar.gz redis:7-alpine
         
         # Graylog
         docker pull graylog/graylog:6.1
