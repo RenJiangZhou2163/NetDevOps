@@ -17,5 +17,6 @@ services:
       - /usr/local/nginx/conf.d:/etc/nginx/conf.d
     environment:
       - NGINX_PORT=80
+      - NGINX_HOST=foobar.com
       - TZ=Asia/Shanghai
     privileged: true
