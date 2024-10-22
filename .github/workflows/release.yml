@@ -27,8 +27,8 @@ jobs:
         docker save -o output/postgres-latest.tar.gz postgres:latest
 
         # MySQL
-        docker pull mysql:8.0.36 
-        docker save -o output/mysql-8.0.36.tar.gz mysql:8.0.36
+        docker pull mysql:8.0 
+        docker save -o output/mysql-8.0.tar.gz mysql:8.0
 
         # MongoDB
         docker pull mongo:5.0
