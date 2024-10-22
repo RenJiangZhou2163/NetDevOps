@@ -1,5 +1,3 @@
-version: "3.8"
-
 # For DataNode setup, graylog starts with a preflight UI, this is a change from just using OpenSearch/Elasticsearch.
 # Please take a look at the README at the top of this repo or the regular docs for more info.
 
@@ -13,7 +11,7 @@ services:
   # For DataNode setup, graylog starts with a preflight UI, this is a change from just using OpenSearch/Elasticsearch.
   # Please take a look at the README at the top of this repo or the regular docs for more info.
   datanode:
-    image: "${DATANODE_IMAGE:-graylog/graylog-datanode:6.0}"
+    image: "${DATANODE_IMAGE:-graylog/graylog-datanode:6.1}"
     hostname: "datanode"
     environment:
       GRAYLOG_DATANODE_NODE_ID_FILE: "/var/lib/graylog-datanode/node-id"
@@ -37,7 +35,7 @@ services:
 
   graylog:
     hostname: "server"
-    image: "${GRAYLOG_IMAGE:-graylog/graylog:6.0}"
+    image: "${GRAYLOG_IMAGE:-graylog/graylog:6.1}"
     depends_on:
       mongodb:
         condition: "service_started"
@@ -51,8 +49,8 @@ services:
       GRAYLOG_MONGODB_URI: "mongodb://mongodb:27017/graylog"
     ports:
     - "5044:5044/tcp"   # Beats
-    - "5140:5140/tcp"   # Syslog TCP
-    - "5140:5140/udp"   # Syslog UDP
+    - "5140:5140/udp"   # Syslog
+    - "5140:5140/tcp"   # Syslog
     - "5555:5555/tcp"   # RAW TCP
     - "5555:5555/udp"   # RAW UDP
     - "9000:9000/tcp"   # Server API

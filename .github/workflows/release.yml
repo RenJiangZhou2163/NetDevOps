@@ -31,8 +31,8 @@ jobs:
         docker save -o output/mysql-8.0.36.tar.gz mysql:8.0.36
 
         # MongoDB
-        docker pull mongo:5.0.26 
-        docker save -o output/mongo-5.0.26.tar.gz mongo:5.0.26
+        docker pull mongo:5.0
+        docker save -o output/mongo-5.0.tar.gz mongo:5.0
 
         # Redis
         docker pull redis:7-alpine
