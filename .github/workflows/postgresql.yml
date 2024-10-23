@@ -10,7 +10,28 @@ on:
 
 jobs:
 
-  NetBox:
+  postgresql-repmgr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Pull and Save Grafana Image as File  
+        run: |
+          docker pull bitnami/postgresql-repmgr:latest
+          docker save -o postgresql-repmgr-latest.tar.gz bitnami/postgresql-repmgr:latest
+
+      - name: Upload Grafana Image Artifact  
+        uses: actions/upload-artifact@v4 
+        with:
+          name: bitnami/postgresql-repmgr:latest
+          path: postgresql-repmgr-latest.tar.gz
+      
+  pgpool-latest:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,11 +45,9 @@ jobs:
         run: |
           docker pull bitnami/pgpool:latest
           docker save -o pgpool-latest.tar.gz bitnami/pgpool:latest
-          docker pull bitnami/postgresql-repmgr:latest
-          docker save -o postgresql-repmgr-latest.tar.gz bitnami/postgresql-repmgr:latest
 
       - name: Upload Grafana Image Artifact  
         uses: actions/upload-artifact@v4 
         with:
-          name: netbox-latest
-          path: netbox-latest.tar.gz
+          name: bitnami/pgpool:latest
+          path: pgpool-latest.tar.gz
