@@ -28,7 +28,7 @@ jobs:
       - name: Upload Grafana Image Artifact  
         uses: actions/upload-artifact@v4 
         with:
-          name: postgresql-repmgr-latest.tar.gz
+          name: postgresql-repmgr-latest
           path: postgresql-repmgr-latest.tar.gz
       
   pgpool-latest:
@@ -49,5 +49,5 @@ jobs:
       - name: Upload Grafana Image Artifact  
         uses: actions/upload-artifact@v4 
         with:
-          name: pgpool-latest.tar.gz
+          name: pgpool-latest
           path: pgpool-latest.tar.gz
