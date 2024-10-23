@@ -15,6 +15,14 @@ services:
       - nautobot_media_files:/opt/nautobot/media:rw
     #   - "./nautobot.key:/opt/nautobot/nautobot.key:ro"
     #   - "./nautobot.crt:/opt/nautobot/nautobot.crt:ro"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "3"
+    networks:
+      net_frontend:
+        ipv4_address: 172.16.238.41
     
   celery_worker:
     image: "nautobot:latest"
@@ -40,6 +48,14 @@ services:
           "-c",
           "nautobot-server celery inspect ping --destination celery@$$HOSTNAME"  ## $$ because of docker-compose
         ]
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "3"
+    networks:
+      net_backend:
+        ipv4_address: 172.16.239.41
     
   celery_beat:
     image: "nautobot:latest"
@@ -55,6 +71,14 @@ services:
       - "nautobot"
     healthcheck:
       disable: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "3"
+    networks:
+      net_backend:
+        ipv4_address: 172.16.239.42
     
   redis:
     image: "redis:7-alpine"
@@ -66,8 +90,22 @@ services:
     env_file:
       - "local.env"
       - "creds.env"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "3"
+    networks:
+      net_backend:
+        ipv4_address: 172.16.239.43
 
 volumes:
   nautobot_media_data:
   nautobot_media_files:
   db_data:
+
+networks:
+  net_frontend:
+    external: true
+  net_backend:
+    external: true

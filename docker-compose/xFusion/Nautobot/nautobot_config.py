@@ -47,12 +47,8 @@ PLUGINS = [
     "nautobot_bgp_models",
     "nautobot_floor_plan",
     "nautobot_design_builder",
-    "welcome_wizard",
-
-    # 以下是三方插件
-    "nautobot_type_reapply",
-    "nautobot_sfp_inventory",
     # "nautobot_ui_plugin",     # 当前版本不适配Nautobot2.3.x
+    "nautobot_type_reapply",
 ]
 
 # Plugins configuration settings. These settings are used by various plugins that the user may have installed.
@@ -76,8 +72,8 @@ PLUGINS_CONFIG = {
     "nautobot_circuit_maintenance": {
         "raw_notification_initial_days_since": 100,
         "raw_notification_size": 16384,
-        "dashboard_n_days": 30,  # Defaults to 30 days in the configurations, change/override here
-        "overlap_job_exclude_no_impact": False, # Exclude in job warnings the impact of `No-Impact`
+        "dashboard_n_days": 30,
+        "overlap_job_exclude_no_impact": False,
         "notification_sources": []
     },
     "nautobot_data_validation_engine": {},
@@ -119,9 +115,5 @@ PLUGINS_CONFIG = {
                 },
             },
         },
-    },
-  "welcome_wizard": {
-    "enable_devicetype-library": True,
-    "enable_welcome_banner": True,
-  }
+    }
 }

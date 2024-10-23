@@ -5,3 +5,7 @@ docker-compose/Nautobot/creds.env
 *.env
 **/.env
 docker-compose/Graylog2/single-node/.env
+local-test/*
+*.crt
+*.cer
+*.key
