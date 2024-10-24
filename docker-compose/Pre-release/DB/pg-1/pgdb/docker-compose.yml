@@ -2,9 +2,10 @@ version: '2'
 
 services:
   pg-1:
-    image: bitnami/postgresql-repmgr:14
-    network_mode: "host"
+    image: bitnami/postgresql-repmgr:latest
     container_name: "pgrepmgr1"
+    ports:
+      - 5432:5432
     volumes:
       - ./data:/bitnami/postgresql
     environment:
@@ -22,4 +23,6 @@ services:
       - REPMGR_NODE_NETWORK_NAME=pg-1
       - REPMGR_PORT_NUMBER=5432
     restart: always
-
+    extra_hosts:
+      - "pg-0:10.32.142.12"
+      - "pg-1:10.32.143.160"

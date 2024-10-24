@@ -29,10 +29,14 @@ jobs:
         # postgresql-repmgr-latest
         docker pull bitnami/postgresql-repmgr:latest
         docker save -o postgresql-repmgr-latest.tar.gz bitnami/postgresql-repmgr:latest
-        
+
         # pgpool-latest
         docker pull bitnami/pgpool:latest
         docker save -o pgpool-latest.tar.gz bitnami/pgpool:latest
+
+        # pgadmin4-latest
+        docker pull dpage/pgadmin4:latest
+        docker save -o pgadmin4-latest.tar.gz dpage/pgadmin4:latest
 
         # MySQL
         docker pull mysql:8.0 
