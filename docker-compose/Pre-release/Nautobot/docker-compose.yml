@@ -99,10 +99,10 @@ services:
       net_backend:
         ipv4_address: 172.16.239.43
 
+
 volumes:
   nautobot_media_data:
   nautobot_media_files:
-  db_data:
 
 networks:
   net_frontend:

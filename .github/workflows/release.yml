@@ -26,6 +26,14 @@ jobs:
         docker pull postgres:latest
         docker save -o output/postgres-latest.tar.gz postgres:latest
 
+        # postgresql-repmgr-latest
+        docker pull bitnami/postgresql-repmgr:latest
+        docker save -o postgresql-repmgr-latest.tar.gz bitnami/postgresql-repmgr:latest
+        
+        # pgpool-latest
+        docker pull bitnami/pgpool:latest
+        docker save -o pgpool-latest.tar.gz bitnami/pgpool:latest
+
         # MySQL
         docker pull mysql:8.0 
         docker save -o output/mysql-8.0.tar.gz mysql:8.0
