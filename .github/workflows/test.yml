@@ -1,4 +1,4 @@
-name: Pull and Save Docker Images
+name: test
 
 on:
   push:
