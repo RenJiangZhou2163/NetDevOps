@@ -32,6 +32,9 @@ jobs:
           docker pull dpage/pgadmin4:latest
           docker save dpage/pgadmin4:latest > pgadmin4-latest.tar.gz
 
+          docker pull frooodle/s-pdf:latest
+          docker save frooodle/s-pdf:latest > frooodle-s-pdf:latest.tar.gz
+          
       - name: Upload Grafana Image Artifact  
         uses: actions/upload-artifact@v4 
         with:
