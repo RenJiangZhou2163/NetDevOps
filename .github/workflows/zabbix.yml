@@ -2,8 +2,6 @@ name: zabbix
 
 on:
   push:
-    tags:
-      - 'v*'
     branches:
       - main
   schedule:
@@ -37,26 +35,26 @@ jobs:
         docker pull mysql:8.0-oracle
         docker save -o mysql-8.0-oracle.tar.gz mysql:8.0-oracle
 
-      - name: Upload Image Artifact
-        uses: actions/upload-artifact@v4 
-        with:
-          name: output/zabbix-web-nginx-pgsql
-          path: output/zabbix-web-nginx-pgsql-alpine-7.0-latest.tar.gz
-          
-      - name: Upload Image Artifact  
-        uses: actions/upload-artifact@v4 
-        with:
-          name: zabbix-server-pgsql
-          path: zabbix-server-pgsql-alpine-7.0-latest.tar.gz
-          
-      - name: Upload Image Artifact  
-        uses: actions/upload-artifact@v4 
-        with:
-          name: zabbix-proxy-mysql
-          path: zabbix-proxy-mysql-alpine-7.0-latest.tar.gz
-          
-        - name: Upload Image Artifact  
-        uses: actions/upload-artifact@v4 
-        with:
-          name: mysql-8.0-oracle
-          path: mysql-8.0-oracle.tar.gz
+    - name: Upload Image Artifact
+      uses: actions/upload-artifact@v4 
+      with:
+        name: output/zabbix-web-nginx-pgsql
+        path: output/zabbix-web-nginx-pgsql-alpine-7.0-latest.tar.gz
+        
+    - name: Upload Image Artifact  
+      uses: actions/upload-artifact@v4 
+      with:
+        name: zabbix-server-pgsql
+        path: zabbix-server-pgsql-alpine-7.0-latest.tar.gz
+        
+    - name: Upload Image Artifact  
+      uses: actions/upload-artifact@v4 
+      with:
+        name: zabbix-proxy-mysql
+        path: zabbix-proxy-mysql-alpine-7.0-latest.tar.gz
+        
+    - name: Upload Image Artifact  
+      uses: actions/upload-artifact@v4 
+      with:
+        name: mysql-8.0-oracle
+        path: mysql-8.0-oracle.tar.gz
