@@ -1,0 +1,62 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Build project
+      run: |
+        # 这里添加你的构建命令
+        
+        # Zabbix-Server
+        docker pull zabbix/zabbix-server-pgsql:alpine-7.0-latest
+        docker save -o zabbix-server-pgsql-alpine-7.0-latest.tar.gz zabbix/zabbix-server-pgsql:alpine-7.0-latest
+                   
+        # Zabbix-Proxy
+        docker pull zabbix/zabbix-proxy-mysql:alpine-7.0-latest
+        docker save -o zabbix-proxy-mysql-alpine-7.0-latest.tar.gz zabbix/zabbix-proxy-mysql:alpine-7.0-latest
+        
+        # Zabbix-Web
+        docker pull zabbix/zabbix-web-nginx-pgsql:alpine-7.0-latest
+        docker save -o zabbix-web-nginx-pgsql-alpine-7.0-latest.tar.gz zabbix/zabbix-web-nginx-pgsql:alpine-7.0-latest
+
+        # MySQL
+        docker pull mysql:8.0-oracle
+        docker save -o mysql-8.0-oracle.tar.gz mysql:8.0-oracle
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4 
+        with:
+          name: output/zabbix-web-nginx-pgsql
+          path: output/zabbix-web-nginx-pgsql-alpine-7.0-latest.tar.gz
+          
+      - name: Upload Image Artifact  
+        uses: actions/upload-artifact@v4 
+        with:
+          name: zabbix-server-pgsql
+          path: zabbix-server-pgsql-alpine-7.0-latest.tar.gz
+          
+      - name: Upload Image Artifact  
+        uses: actions/upload-artifact@v4 
+        with:
+          name: zabbix-proxy-mysql
+          path: zabbix-proxy-mysql-alpine-7.0-latest.tar.gz
+          
+        - name: Upload Image Artifact  
+        uses: actions/upload-artifact@v4 
+        with:
+          name: mysql-8.0-oracle
+          path: mysql-8.0-oracle.tar.gz
