@@ -38,8 +38,8 @@ jobs:
     - name: Upload Image Artifact
       uses: actions/upload-artifact@v4 
       with:
-        name: output/zabbix-web-nginx-pgsql
-        path: output/zabbix-web-nginx-pgsql-alpine-7.0-latest.tar.gz
+        name: zabbix-web-nginx-pgsql
+        path: zabbix-web-nginx-pgsql-alpine-7.0-latest.tar.gz
         
     - name: Upload Image Artifact  
       uses: actions/upload-artifact@v4 
