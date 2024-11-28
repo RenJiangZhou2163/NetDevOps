@@ -4,6 +4,10 @@ on:
   push:
     tags:
       - 'v*'
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
   build:
@@ -71,16 +75,16 @@ jobs:
         docker save -o output/prom-alertmanager-latest.tar.gz prom/alertmanager:latest
         
         # Zabbix-Server
-        docker pull zabbix/zabbix-server-pgsql:latest
-        docker save -o output/zabbix-server-pgsql-latest.tar.gz zabbix/zabbix-server-pgsql:alpine-7.0-latest
+        docker pull zabbix/zabbix-server-pgsql:alpine-7.0-latest
+        docker save -o output/zabbix-server-pgsql-alpine-7.0-latest.tar.gz zabbix/zabbix-server-pgsql:alpine-7.0-latest
                    
         # Zabbix-Proxy
-        docker pull zabbix/zabbix-proxy-mysql:latest
-        docker save -o output/zabbix-proxy-mysql-latest.tar.gz zabbix/zabbix-proxy-mysql:alpine-7.0-latest
+        docker pull zabbix/zabbix-proxy-mysql:alpine-7.0-latest
+        docker save -o output/zabbix-proxy-mysql-alpine-7.0-latest.tar.gz zabbix/zabbix-proxy-mysql:alpine-7.0-latest
         
         # Zabbix-Web
-        docker pull zabbix/zabbix-web-nginx-pgsql:latest
-        docker save -o output/zabbix-web-nginx-pgsql-latest.tar.gz zabbix/zabbix-web-nginx-pgsql:alpine-7.0-latest
+        docker pull zabbix/zabbix-web-nginx-pgsql:alpine-7.0-latest
+        docker save -o output/zabbix-web-nginx-pgsql-alpine-7.0-latest.tar.gz zabbix/zabbix-web-nginx-pgsql:alpine-7.0-latest
   
     - name: Create Release
       id: create_release
