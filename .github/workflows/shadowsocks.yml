@@ -1,0 +1,29 @@
+name: shadowsocks
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build project
+        run: |
+          # 这里添加你的构建命令
+
+          docker pull shadowsocks/shadowsocks-libev:latest
+          docker save -o shadowsocks_shadowsocks-libev.tar.gz shadowsocks/shadowsocks-libev:latest
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: shadowsocks_shadowsocks-libev
+          path: shadowsocks_shadowsocks-libev.tar.gz

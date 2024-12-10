@@ -1,0 +1,30 @@
+name: MySQL
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build project
+        run: |
+          # 这里添加你的构建命令
+
+          # MySQL
+          docker pull mysql:8.0-oracle
+          docker save -o mysql-8.0-oracle.tar.gz mysql:8.0-oracle
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mysql-8.0-oracle
+          path: mysql-8.0-oracle.tar.gz

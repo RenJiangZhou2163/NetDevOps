@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  pg-1:
+    image: bitnami/postgresql-repmgr:latest
+    container_name: "pgrepmgr1"
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data:/bitnami/postgresql
+    environment:
+      - POSTGRESQL_POSTGRES_PASSWORD=adminpassword
+      - POSTGRESQL_USERNAME=customuser
+      - POSTGRESQL_PASSWORD=custompassword
+      - POSTGRESQL_DATABASE=customdatabase
+      - POSTGRESQL_NUM_SYNCHRONOUS_REPLICAS=1
+      - REPMGR_USERNAME=repmgr
+      - REPMGR_PASSWORD=repmgrpassword
+      - REPMGR_PRIMARY_HOST=pg-0
+      - REPMGR_PRIMARY_PORT=5432
+      - REPMGR_PARTNER_NODES=pg-0,pg-1:5432
+      - REPMGR_NODE_NAME=pg-1
+      - REPMGR_NODE_NETWORK_NAME=pg-1
+      - REPMGR_PORT_NUMBER=5432
+    restart: always
+    extra_hosts:
+      - "pg-0:10.32.142.12"
+      - "pg-1:10.32.143.160"

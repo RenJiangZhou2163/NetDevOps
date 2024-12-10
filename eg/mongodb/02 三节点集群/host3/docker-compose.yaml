@@ -1,0 +1,20 @@
+networks:
+  graylog:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+
+services:
+  mongodb3:
+    image: "mongo:5.0"
+    hostname: "mongodb3"
+    command: ["mongod", "--bind_ip_all", "--replSet", "rs0"]
+    volumes:
+      - "mongodb-data-03:/data/db"
+    networks:
+      graylog:
+        ipv4_address: 172.20.0.4
+    restart: "on-failure"
+
+volumes:
+  mongodb-data-03:

@@ -1,0 +1,29 @@
+name: harbor
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  NetBox:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: get harbor
+        run: |
+          wget https://github.com/goharbor/harbor/releases/download/v2.11.1/harbor-offline-installer-v2.11.1.tgz
+
+      - name: Upload Grafana Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: harbor-offline-installer
+          path: harbor-offline-installer-v2.11.1.tgz

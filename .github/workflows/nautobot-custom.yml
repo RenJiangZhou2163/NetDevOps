@@ -1,0 +1,37 @@
+name: Nautobot
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  Nautobot-Custom:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push Nautobot image with plugins
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./packaging/docker/custom/Dockerfile.nautobot
+          tags: nautobot:latest
+          load: true
+
+      - name: Save Nautobot Docker image as file
+        run: |
+          docker save -o nautobot-latest.tar.gz nautobot:latest
+
+      - name: Upload Nautobot Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nautobot-latest
+          path: nautobot-latest.tar.gz

@@ -1,0 +1,384 @@
+version: '3.5'
+services:
+ monitor-web:
+  image: monitor-web:latest
+  container_name: monitor-web
+  hostname: monitor-web
+  ports:
+   - "80:8080"
+#   - "443:8443"
+  volumes:
+   - /etc/localtime:/etc/localtime:ro
+   - /etc/timezone:/etc/timezone:ro
+   - ./zbx_env/etc/ssl/nginx:/etc/ssl/nginx:ro
+   - ./zbx_env/usr/share/zabbix/modules/:/usr/share/zabbix/modules/:ro
+  deploy:
+   resources:
+    # limits:
+    #   cpus: '0.70'
+    #   memory: 512M
+    reservations:
+      cpus: '0.5'
+      memory: 256M
+  env_file:
+   - ./env_vars/.env_db_pgsql
+   - ./env_vars/.env_web
+  secrets:
+   - POSTGRES_USER
+   - POSTGRES_PASSWORD
+  depends_on:
+   - monitor-server
+  healthcheck:
+   test: ["CMD", "curl", "-f", "http://localhost:8080/ping"]
+   interval: 10s
+   timeout: 5s
+   retries: 3
+   start_period: 30s
+  networks:
+   zbx_net_backend:
+    aliases:
+     - zabbix-web-nginx-pgsql
+    ipv4_address: 172.16.239.2
+   zbx_net_frontend:
+    ipv4_address: 172.16.238.2
+  stop_grace_period: 10s
+  sysctls:
+   - net.core.somaxconn=65535
+  labels:
+   com.zabbix.description: "Zabbix frontend on Nginx web-server with PostgreSQL database support"
+   com.zabbix.company: "Zabbix LLC"
+   com.zabbix.component: "zabbix-frontend"
+   com.zabbix.webserver: "nginx"
+   com.zabbix.dbtype: "pgsql"
+   com.zabbix.os: "centos"
+   
+ monitor-server:
+  image: monitor-server:latest
+  container_name: monitor-server
+  hostname: monitor-server
+  ports:
+   - "10071:10051"
+  volumes:
+   - /etc/localtime:/etc/localtime:ro
+   - /etc/timezone:/etc/timezone:ro 
+   - ./zbx_env/usr/lib/zabbix/alertscripts:/usr/lib/zabbix/alertscripts:ro
+   - ./zbx_env/usr/lib/zabbix/externalscripts:/usr/lib/zabbix/externalscripts:ro
+   - ./zbx_env/var/lib/zabbix/dbscripts:/var/lib/zabbix/dbscripts:ro
+   - ./zbx_env/var/lib/zabbix/export:/var/lib/zabbix/export:rw
+   - ./zbx_env/var/lib/zabbix/modules:/var/lib/zabbix/modules:ro
+   - ./zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc:ro
+   - ./zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys:ro
+   - ./zbx_env/var/lib/zabbix/mibs:/var/lib/zabbix/mibs:ro
+   - ./zbx_env/tmp/rpm:/var/tmp/rpm:rw
+   - ./zbx_env/tmp/pip:/var/tmp/pip:rw
+  ulimits:
+   nproc: 65535
+   nofile:
+    soft: 20000
+    hard: 40000
+  deploy:
+   resources:
+    reservations:
+      cpus: '0.5'
+      memory: 512M
+  env_file:
+   - ./env_vars/.env_db_pgsql
+   - ./env_vars/.env_srv
+  secrets:
+   - POSTGRES_USER
+   - POSTGRES_PASSWORD
+  networks:
+   zbx_net_backend:
+     aliases:
+      - zabbix-server
+     ipv4_address: 172.16.239.3
+   zbx_net_frontend:
+     ipv4_address: 172.16.238.3
+  stop_grace_period: 30s
+  restart: always
+  sysctls:
+   - net.ipv4.ip_local_port_range=1024 64999
+   - net.ipv4.conf.all.accept_redirects=0
+   - net.ipv4.conf.all.secure_redirects=0
+   - net.ipv4.conf.all.send_redirects=0
+  labels:
+   com.zabbix.description: "Zabbix server with PostgreSQL database support"
+   com.zabbix.company: "Zabbix LLC"
+   com.zabbix.component: "zabbix-server"
+   com.zabbix.dbtype: "pgsql"
+   com.zabbix.os: "centos"
+
+ monitor-proxy:
+  image: monitor-proxy:latest
+  container_name: monitor-proxy
+  hostname: monitor-proxy
+  profiles:
+   - all
+  ports:
+   - "10051:10051"
+  volumes:
+   - /etc/localtime:/etc/localtime:ro
+   - /etc/timezone:/etc/timezone:ro 
+   - ./zbx_env/usr/lib/zabbix/externalscripts:/usr/lib/zabbix/externalscripts:ro
+   - ./zbx_env/var/lib/zabbix/modules:/var/lib/zabbix/modules:ro
+   - ./zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc:ro
+   - ./zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys:ro
+   - ./zbx_env/var/lib/zabbix/mibs:/var/lib/zabbix/mibs:ro
+  ulimits:
+   nproc: 65535
+   nofile:
+    soft: 20000
+    hard: 40000
+  deploy:
+   resources:
+    reservations:
+      cpus: '0.3'
+      memory: 256M
+  env_file:
+   - ./env_vars/.env_db_mysql_proxy
+   - ./env_vars/.env_prx
+  secrets:
+   - MYSQL_USER
+   - MYSQL_PASSWORD
+   - MYSQL_ROOT_USER
+   - MYSQL_ROOT_PASSWORD
+  depends_on:
+   - mysql-server
+  networks:
+   zbx_net_backend:
+    aliases:
+     - zabbix-proxy-mysql
+    ipv4_address: 172.16.239.4
+   zbx_net_frontend:
+    ipv4_address: 172.16.238.4
+  stop_grace_period: 30s
+  restart: always
+  labels:
+   com.zabbix.description: "Zabbix proxy with MySQL database support"
+   com.zabbix.company: "Zabbix LLC"
+   com.zabbix.component: "zabbix-proxy"
+   com.zabbix.dbtype: "mysql"
+   com.zabbix.os: "centos"
+
+ monitor-agent2:
+  image: monitor-agent2:latest
+  container_name: monitor-agent2
+  hostname: monitor-agent2
+  user: root
+  profiles:
+   - full
+   - all
+  ports:
+   - "10050:10050"
+  volumes:
+   - /etc/localtime:/etc/localtime:ro
+   - /etc/timezone:/etc/timezone:ro
+   - ./zbx_env/etc/zabbix/zabbix_agentd.d:/etc/zabbix/zabbix_agentd.d:ro
+   - ./zbx_env/var/lib/zabbix/modules:/var/lib/zabbix/modules:ro
+   - ./zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc:ro
+   - ./zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys:ro
+   - /var/run/docker.sock:/var/run/docker.sock:ro
+  deploy:
+   resources:
+    limits:
+      cpus: '0.2'
+      memory: 128M
+    reservations:
+      cpus: '0.1'
+      memory: 64M
+   mode: global
+  env_file:
+   - ./env_vars/.env_agent
+  privileged: true
+  pid: "host"
+  networks:
+   zbx_net_backend:
+    aliases:
+     - zabbix-agent
+     - zabbix-agent-passive
+     - zabbix-agent-centos
+    ipv4_address: 172.16.239.14
+  stop_grace_period: 5s
+  labels:
+   com.zabbix.description: "Zabbix agent"
+   com.zabbix.company: "Zabbix LLC"
+   com.zabbix.component: "zabbix-agentd"
+   com.zabbix.os: "centos"
+
+ monitor-java-gateway:
+  image: monitor-java-gateway:centos-6.4-latest
+  container_name: monitor-java-gateway
+  hostname: monitor-java-gateway
+  profiles:
+   - full
+   - all
+  ports:
+   - "10052:10052"
+  deploy:
+   resources:
+    limits:
+      cpus: '0.5'
+      memory: 512M
+    reservations:
+      cpus: '0.25'
+      memory: 256M
+  env_file:
+   - ./env_vars/.env_java
+  networks:
+   zbx_net_backend:
+    aliases:
+     - zabbix-java-gateway
+     - zabbix-java-gateway-centos
+    ipv4_address: 172.16.239.13
+  stop_grace_period: 5s
+  labels:
+   com.zabbix.description: "Zabbix Java Gateway"
+   com.zabbix.company: "Zabbix LLC"
+   com.zabbix.component: "java-gateway"
+   com.zabbix.os: "centos"
+
+ monitor-web-service:
+  image: monitor-web-service:centos-6.4-latest
+  container_name: monitor-web-service
+  hostname: monitor-web-service
+  profiles:
+   - full
+   - all
+  ports:
+   - "10053:10053"
+  volumes:
+   - ./zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc:ro
+  security_opt:
+   - seccomp:./env_vars/chrome_dp.json
+  deploy:
+   resources:
+    limits:
+      cpus: '0.5'
+      memory: 512M
+    reservations:
+      cpus: '0.25'
+      memory: 256M
+  env_file:
+   - ./env_vars/.env_web_service
+  networks:
+   zbx_net_backend:
+    aliases:
+     - zabbix-web-service
+     - zabbix-web-service-centos
+    ipv4_address: 172.16.239.12
+  stop_grace_period: 5s
+  labels:
+   com.zabbix.description: "Zabbix web service"
+   com.zabbix.company: "Zabbix LLC"
+   com.zabbix.component: "web-service"
+   com.zabbix.os: "centos"
+
+ mysql-server:
+  image: mysql:8.0.36
+  container_name: mysql-server
+  hostname: mysql-server
+  profiles:
+   - all
+  command:
+   - mysqld
+   - --character-set-server=utf8mb4
+   - --collation-server=utf8mb4_bin
+   - --skip-log-bin
+# Only during upgrade from versions prior 6.4
+#   - --log_bin_trust_function_creators=1
+  volumes:
+   - ./zbx_env/var/lib/mysql:/var/lib/mysql:rw
+  env_file:
+   - ./env_vars/.env_db_mysql
+  secrets:
+   - MYSQL_USER
+   - MYSQL_PASSWORD
+   - MYSQL_ROOT_PASSWORD
+  stop_grace_period: 1m
+  restart: always
+  networks:
+   zbx_net_backend:
+    aliases:
+     - mysql-server
+    ipv4_address: 172.16.239.11
+
+ dashboards:
+  image: xnet/dashboards
+  container_name: dashboards
+  hostname: dashboards
+  restart: always
+  env_file:
+   - ./env_vars/dashboards/.env
+  ports:
+   - 443:3000
+  volumes:
+   - /etc/localtime:/etc/localtime:ro
+   - /etc/timezone:/etc/timezone:ro 
+   - ./ssl/server.cer:/etc/server.cer:ro
+   - ./ssl/server.key:/etc/server.key:ro
+  networks:
+   zbx_net_backend:
+     ipv4_address: 172.16.239.5
+   zbx_net_frontend:
+     ipv4_address: 172.16.238.5
+
+
+ alertmanager:
+  image: prom/alertmanager:v0.26.0
+  container_name: alertmanager
+  hostname: alertmanager
+  restart: always
+  command:
+   - --config.file=/etc/alertmanager/alertmanager.yml
+   - --storage.path=/alertmanager
+   - --log.level=debug
+   - --cluster.listen-address=0.0.0.0:9094
+   - --cluster.peer=10.32.131.248:9094
+  volumes:
+   - /etc/localtime:/etc/localtime:ro
+   - /etc/timezone:/etc/timezone:ro 
+   - ./alertmanager_env/etc:/etc/alertmanager:ro
+   - ./alertmanager_env/data:/alertmanager:ro
+  ports:
+   - 9093:9093
+   - 9094:9094
+  networks:
+   zbx_net_backend:
+     ipv4_address: 172.16.239.6
+   zbx_net_frontend:
+     ipv4_address: 172.16.238.6
+     
+networks:
+  zbx_net_frontend:
+    name: zbx_net_frontend
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.238.0/24
+  zbx_net_backend:
+    name: zbx_net_backend
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    internal: true
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.239.0/24
+
+secrets:
+  MYSQL_USER:
+    file: ./env_vars/.MYSQL_USER
+  MYSQL_PASSWORD:
+    file: ./env_vars/.MYSQL_PASSWORD
+  MYSQL_ROOT_USER:
+    file: ./env_vars/.MYSQL_ROOT_USER
+  MYSQL_ROOT_PASSWORD:
+    file: ./env_vars/.MYSQL_ROOT_PASSWORD
+  POSTGRES_USER:
+    file: ./env_vars/.POSTGRES_USER
+  POSTGRES_PASSWORD:
+    file: ./env_vars/.POSTGRES_PASSWORD

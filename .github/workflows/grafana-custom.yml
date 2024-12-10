@@ -1,0 +1,40 @@
+name: Grafana
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  Grafana-Custom:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push Grafana image with plugins
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./packaging/docker/custom/Dockerfile.grafana
+          build-args: |
+            GRAFANA_VERSION=latest
+            GF_INSTALL_PLUGINS=grafana-clock-panel,alexanderzobnin-zabbix-app,camptocamp-prometheus-alertmanager-datasource,grafana-opensearch-datasource,marcusolsson-csv-datasource,volkovlabs-grapi-datasource,marcusolsson-json-datasource,yesoreyeram-infinity-datasource
+          tags: grafana:latest
+          load: true
+
+      - name: Save Grafana Docker image as file
+        run: |
+          docker save -o dashboards-latest.tar.gz dashboards:latest
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dashboards-latest
+          path: dashboards-latest.tar.gz

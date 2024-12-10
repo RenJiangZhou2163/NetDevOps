@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  pgpool:
+    image: bitnami/pgpool:latest
+    container_name: "pgpool"
+    network_mode: "bridge"
+    ports:
+      - 9999:5432
+    volumes:
+      - ./conf/myconf.conf:/config/myconf.conf
+    environment:
+      - PGPOOL_USER_CONF_FILE=/config/myconf.conf
+      - PGPOOL_BACKEND_NODES=0:pg-0:5432,1:pg-1:5432
+      - PGPOOL_SR_CHECK_USER=repmgr
+      - PGPOOL_SR_CHECK_PASSWORD=repmgrpassword
+      - PGPOOL_ENABLE_LDAP=no
+      - PGPOOL_POSTGRES_USERNAME=postgres
+      - PGPOOL_POSTGRES_PASSWORD=adminpassword
+      - PGPOOL_ADMIN_USERNAME=admin
+      - PGPOOL_ADMIN_PASSWORD=adminpassword
+      - PGPOOL_ENABLE_LOAD_BALANCING=yes
+      - PGPOOL_POSTGRES_CUSTOM_USERS=customuser
+      - PGPOOL_POSTGRES_CUSTOM_PASSWORDS=custompassword
+    restart: always
+    extra_hosts:
+      - "pg-0:10.32.142.12"
+      - "pg-1:10.32.143.160"
+    healthcheck:
+      test: ["CMD", "/opt/bitnami/scripts/pgpool/healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
