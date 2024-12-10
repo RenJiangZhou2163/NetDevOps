@@ -1,4 +1,5 @@
-name: Grafana
+# Pull and Save Grafana-Custom Docker Images
+name: Grafana-Custom
 
 on:
   push:

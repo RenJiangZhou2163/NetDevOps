@@ -1,4 +1,5 @@
-name: harbor
+# Pull and Save Harbor Docker Images
+name: Harbor
 
 on:
   push:
