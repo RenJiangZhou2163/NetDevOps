@@ -1,0 +1,111 @@
+# 2024-11-22 13:42:22
+# 测试通过
+# renjiangzhou@xfusion.com
+
+apiVersion: 1
+
+# deleteDatasources:
+#   - name: Monitor
+
+datasources:
+  - name: Log_AD
+    type: grafana-opensearch-datasource
+    access: proxy
+    orgId: 1
+    url: http://10.32.137.176:9200
+    isDefault: false
+    jsonData:
+      database: active_directory_*
+      flavor: opensearch
+      logLevelField: message
+      logMessageField: source
+      maxConcurrentShardRequests: 5
+      pplEnabled: true
+      timeField: timestamp
+      version: "2.11.0"
+    readOnly: false
+
+  - name: log_DefaultStream
+    type: grafana-opensearch-datasource
+    access: proxy
+    orgId: 1
+    url: http://10.32.137.176:9200
+    isDefault: false
+    jsonData:
+      database: graylog_*
+      flavor: opensearch
+      maxConcurrentShardRequests: 5
+      pplEnabled: true
+      timeField: timestamp
+      version: "2.11.0"
+    readOnly: false
+
+  - name: Log_Huawei_Policy
+    type: grafana-opensearch-datasource
+    access: proxy
+    orgId: 1
+    url: http://10.32.137.176:9200
+    isDefault: false
+    jsonData:
+      database: huawei_policy_*
+      flavor: opensearch
+      logLevelField: level
+      logMessageField: message
+      maxConcurrentShardRequests: 5
+      pplEnabled: true
+      serverless: false
+      timeField: timestamp
+      version: "2.11.0"
+    readOnly: false
+
+  - name: Log_Huawei_URL
+    type: grafana-opensearch-datasource
+    access: proxy
+    orgId: 1
+    url: http://10.32.137.176:9200
+    isDefault: false
+    jsonData:
+      database: huawei_url_*
+      flavor: opensearch
+      logLevelField: level
+      logMessageField: message
+      maxConcurrentShardRequests: 5
+      pplEnabled: true
+      timeField: timestamp
+      version: "2.11.0"
+    readOnly: false
+
+  - name: Log_NetFlow
+    type: grafana-opensearch-datasource
+    access: proxy
+    orgId: 1
+    url: http://10.32.137.176:9200
+    isDefault: false
+    jsonData:
+      database: netflow_*
+      flavor: opensearch
+      logLevelField: level
+      logMessageField: message
+      maxConcurrentShardRequests: 5
+      pplEnabled: true
+      serverless: false
+      timeField: timestamp
+      version: "2.11.0"
+    readOnly: false
+
+  - name: Log_xMail
+    type: grafana-opensearch-datasource
+    access: proxy
+    orgId: 1
+    url: http://10.32.137.176:9200
+    isDefault: false
+    jsonData:
+      database: xmail_*
+      flavor: opensearch
+      logLevelField: level
+      logMessageField: message
+      maxConcurrentShardRequests: 5
+      pplEnabled: true
+      timeField: timestamp
+      version: "2.11.0"
+    readOnly: false

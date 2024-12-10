@@ -1,0 +1,31 @@
+version: "3.5"
+services:
+  dashboards:
+    # image: ${REPO_NAME}/${PROJECT}/xnet/dashboards
+    image: ${REPO_NAME}/${PROJECT}/dashboards
+    container_name: dashboards
+    hostname: dashboards
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - ./provisioning:/etc/grafana/provisioning:ro
+    env_file:
+      - env_vars/.env
+    environment:
+      - GF_SERVER_DOMAIN=${GF_SERVER_DOMAIN}
+      - GF_DATABASE_HOST=${GF_DATABASE_HOST}
+      - GF_DATABASE_NAME=${GF_DATABASE_NAME}
+      - GF_DATABASE_USER=${GF_DATABASE_USER}
+      - GF_DATABASE_PASSWORD=${GF_DATABASE_PASSWORD}
+      - GF_SECURITY_ADMIN_USER=${GF_SECURITY_ADMIN_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GF_SECURITY_ADMIN_PASSWORD}
+      - GF_AUTH_GENERIC_OAUTH_AUTH_URL=https://${GF_SERVER_DOMAIN}/oauth/v1/authorize
+    networks:
+      frontend:
+
+networks:
+  frontend:
+    external: true
+  backend:
+    external: true

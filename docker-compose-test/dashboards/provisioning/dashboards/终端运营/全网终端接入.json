@@ -1,0 +1,627 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": {
+                    "type": "grafana",
+                    "uid": "-- Grafana --"
+                },
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "target": {
+                    "limit": 100,
+                    "matchAny": false,
+                    "tags": [],
+                    "type": "dashboard"
+                },
+                "type": "dashboard"
+            }
+        ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 120,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+        {
+            "datasource": {
+                "type": "marcusolsson-json-datasource",
+                "uid": "adoigobotbv9ce"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "links": [
+                        {
+                            "targetBlank": true,
+                            "title": "详情",
+                            "url": "https://xdesk.xfusion.com/#/security/monitor/terminal/traffic?accessType=&beginTime=${__from}&endTime=${__to}"
+                        }
+                    ],
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    },
+                    "unit": "none"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 3,
+                "w": 8,
+                "x": 0,
+                "y": 0
+            },
+            "id": 25,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showPercentChange": false,
+                "text": {},
+                "textMode": "value",
+                "wideLayout": true
+            },
+            "pluginVersion": "10.2.3",
+            "targets": [
+                {
+                    "cacheDurationSeconds": 300,
+                    "datasource": {
+                        "type": "marcusolsson-json-datasource",
+                        "uid": "adoigobotbv9ce"
+                    },
+                    "fields": [
+                        {
+                            "jsonPath": "$[*].value",
+                            "type": "number"
+                        }
+                    ],
+                    "method": "GET",
+                    "queryParams": "",
+                    "refId": "A",
+                    "urlPath": "/NetFullViewItemDetail/get_endpoint_count/12688962912197"
+                }
+            ],
+            "title": "实时在线终端数-全部",
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "marcusolsson-json-datasource",
+                "uid": "adoigobotbv9ce"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "links": [
+                        {
+                            "targetBlank": true,
+                            "title": "详情",
+                            "url": "https://xdesk.xfusion.com/#/security/monitor/terminal/traffic?accessType=1&beginTime=${__from}&endTime=${__to}"
+                        }
+                    ],
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    },
+                    "unit": "none"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 3,
+                "w": 8,
+                "x": 8,
+                "y": 0
+            },
+            "id": 32,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
+            },
+            "pluginVersion": "10.2.3",
+            "targets": [
+                {
+                    "cacheDurationSeconds": 300,
+                    "datasource": {
+                        "type": "marcusolsson-json-datasource",
+                        "uid": "adoigobotbv9ce"
+                    },
+                    "fields": [
+                        {
+                            "jsonPath": "$[*].value",
+                            "type": "number"
+                        }
+                    ],
+                    "method": "GET",
+                    "params": [
+                        [
+                            "accessType",
+                            "1"
+                        ]
+                    ],
+                    "queryParams": "",
+                    "refId": "A",
+                    "urlPath": "/NetFullViewItemDetail/get_endpoint_count/12688962912197"
+                }
+            ],
+            "title": "实时在线终端数-有线",
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "marcusolsson-json-datasource",
+                "uid": "adoigobotbv9ce"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "links": [
+                        {
+                            "targetBlank": true,
+                            "title": "详情",
+                            "url": "https://xdesk.xfusion.com/#/security/monitor/terminal/traffic?accessType=2&beginTime=${__from}&endTime=${__to}"
+                        }
+                    ],
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    },
+                    "unit": "none"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 3,
+                "w": 8,
+                "x": 16,
+                "y": 0
+            },
+            "id": 31,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
+            },
+            "pluginVersion": "10.2.3",
+            "targets": [
+                {
+                    "cacheDurationSeconds": 300,
+                    "datasource": {
+                        "type": "marcusolsson-json-datasource",
+                        "uid": "adoigobotbv9ce"
+                    },
+                    "fields": [
+                        {
+                            "jsonPath": "$[*].value",
+                            "type": "number"
+                        }
+                    ],
+                    "method": "GET",
+                    "params": [
+                        [
+                            "accessType",
+                            "2"
+                        ]
+                    ],
+                    "queryParams": "",
+                    "refId": "A",
+                    "urlPath": "/NetFullViewItemDetail/get_endpoint_count/12688962912197"
+                }
+            ],
+            "title": "实时在线终端数-无线",
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "marcusolsson-json-datasource",
+                "uid": "adoigobotbv9ce"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        }
+                    },
+                    "links": [
+                        {
+                            "targetBlank": true,
+                            "title": "场地详情",
+                            "url": "https://xdesk.xfusion.com/#/security/monitor/terminal/traffic?var-Group=${__data.fields.name}&accessType=&beginTime=${__from}&endTime=${__to}"
+                        }
+                    ],
+                    "mappings": [],
+                    "unit": "none"
+                },
+                "overrides": [
+                    {
+                        "__systemRef": "hideSeriesFrom",
+                        "matcher": {
+                            "id": "byNames",
+                            "options": {
+                                "mode": "exclude",
+                                "names": [
+                                    "value"
+                                ],
+                                "prefix": "All except:",
+                                "readOnly": true
+                            }
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.hideFrom",
+                                "value": {
+                                    "legend": false,
+                                    "tooltip": false,
+                                    "viz": true
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 17,
+                "w": 8,
+                "x": 0,
+                "y": 3
+            },
+            "id": 33,
+            "options": {
+                "displayLabels": [],
+                "legend": {
+                    "displayMode": "table",
+                    "placement": "right",
+                    "showLegend": true,
+                    "sortBy": "Value",
+                    "sortDesc": true,
+                    "values": [
+                        "value",
+                        "percent"
+                    ]
+                },
+                "pieType": "donut",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "/^value$/",
+                    "limit": 1000,
+                    "values": true
+                },
+                "tooltip": {
+                    "maxHeight": 600,
+                    "mode": "single",
+                    "sort": "none"
+                }
+            },
+            "pluginVersion": "10.2.3",
+            "targets": [
+                {
+                    "cacheDurationSeconds": 300,
+                    "datasource": {
+                        "type": "marcusolsson-json-datasource",
+                        "uid": "adoigobotbv9ce"
+                    },
+                    "fields": [
+                        {
+                            "jsonPath": "$[*].name",
+                            "name": "name"
+                        },
+                        {
+                            "jsonPath": "$[*].value",
+                            "language": "jsonpath",
+                            "name": "value"
+                        }
+                    ],
+                    "method": "GET",
+                    "queryParams": "",
+                    "refId": "A",
+                    "urlPath": "/NetFullViewItemDetail/get_endpoint_count/12688962912197"
+                }
+            ],
+            "title": "办公网实时在线终端数-全部",
+            "type": "piechart"
+        },
+        {
+            "datasource": {
+                "type": "marcusolsson-json-datasource",
+                "uid": "adoigobotbv9ce"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        }
+                    },
+                    "links": [
+                        {
+                            "targetBlank": true,
+                            "title": "场地详情",
+                            "url": "https://xdesk.xfusion.com/#/security/monitor/terminal/traffic?var-Group=${__data.fields.name}&accessType=&beginTime=${__from}&endTime=${__to}"
+                        }
+                    ],
+                    "mappings": [],
+                    "unit": "none"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 17,
+                "w": 8,
+                "x": 8,
+                "y": 3
+            },
+            "id": 34,
+            "options": {
+                "displayLabels": [],
+                "legend": {
+                    "displayMode": "table",
+                    "placement": "right",
+                    "showLegend": true,
+                    "sortBy": "Value",
+                    "sortDesc": true,
+                    "values": [
+                        "value",
+                        "percent"
+                    ]
+                },
+                "pieType": "donut",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "limit": 1000,
+                    "values": true
+                },
+                "tooltip": {
+                    "maxHeight": 600,
+                    "mode": "single",
+                    "sort": "none"
+                }
+            },
+            "pluginVersion": "10.2.3",
+            "targets": [
+                {
+                    "cacheDurationSeconds": 300,
+                    "datasource": {
+                        "type": "marcusolsson-json-datasource",
+                        "uid": "adoigobotbv9ce"
+                    },
+                    "fields": [
+                        {
+                            "jsonPath": "$[*].name",
+                            "name": "name"
+                        },
+                        {
+                            "jsonPath": "$[*].value",
+                            "language": "jsonpath",
+                            "name": "value"
+                        }
+                    ],
+                    "method": "GET",
+                    "params": [
+                        [
+                            "accessType",
+                            "1"
+                        ]
+                    ],
+                    "queryParams": "",
+                    "refId": "A",
+                    "urlPath": "/NetFullViewItemDetail/get_endpoint_count/12688962912197"
+                }
+            ],
+            "title": "办公网实时在线终端数-有线",
+            "type": "piechart"
+        },
+        {
+            "datasource": {
+                "type": "marcusolsson-json-datasource",
+                "uid": "adoigobotbv9ce"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        }
+                    },
+                    "links": [
+                        {
+                            "targetBlank": true,
+                            "title": "场地详情",
+                            "url": "https://xdesk.xfusion.com/#/security/monitor/terminal/traffic?var-Group=${__data.fields.name}&accessType=&beginTime=${__from}&endTime=${__to}"
+                        }
+                    ],
+                    "mappings": [],
+                    "unit": "none"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 17,
+                "w": 8,
+                "x": 16,
+                "y": 3
+            },
+            "id": 35,
+            "options": {
+                "displayLabels": [],
+                "legend": {
+                    "displayMode": "table",
+                    "placement": "right",
+                    "showLegend": true,
+                    "sortBy": "Value",
+                    "sortDesc": true,
+                    "values": [
+                        "value",
+                        "percent"
+                    ]
+                },
+                "pieType": "donut",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "limit": 1000,
+                    "values": true
+                },
+                "tooltip": {
+                    "maxHeight": 600,
+                    "mode": "single",
+                    "sort": "none"
+                }
+            },
+            "pluginVersion": "10.2.3",
+            "targets": [
+                {
+                    "cacheDurationSeconds": 300,
+                    "datasource": {
+                        "type": "marcusolsson-json-datasource",
+                        "uid": "adoigobotbv9ce"
+                    },
+                    "fields": [
+                        {
+                            "jsonPath": "$[*].name",
+                            "name": "name"
+                        },
+                        {
+                            "jsonPath": "$[*].value",
+                            "language": "jsonpath",
+                            "name": "value"
+                        }
+                    ],
+                    "method": "GET",
+                    "params": [
+                        [
+                            "accessType",
+                            "2"
+                        ]
+                    ],
+                    "queryParams": "",
+                    "refId": "A",
+                    "urlPath": "/NetFullViewItemDetail/get_endpoint_count/12688962912197"
+                }
+            ],
+            "title": "办公网实时在线终端数-无线",
+            "type": "piechart"
+        }
+    ],
+    "refresh": "30m",
+    "schemaVersion": 39,
+    "tags": [
+        "PROD"
+    ],
+    "templating": {
+        "list": [
+            {
+                "hide": 2,
+                "name": "Wired",
+                "query": "hwTotalWrdOnlineNum",
+                "skipUrlSync": false,
+                "type": "constant"
+            },
+            {
+                "hide": 2,
+                "name": "Wireless",
+                "query": "hwTotalWlsOnlineNum",
+                "skipUrlSync": false,
+                "type": "constant"
+            },
+            {
+                "hide": 2,
+                "name": "OnlineNum",
+                "query": "AAA: OnlineNum",
+                "skipUrlSync": false,
+                "type": "constant"
+            }
+        ]
+    },
+    "time": {
+        "from": "now-3h",
+        "to": "now"
+    },
+    "timepicker": {
+        "refresh_intervals": [
+            "30m",
+            "1h",
+            "2h",
+            "1d"
+        ]
+    },
+    "timezone": "",
+    "title": "全网终端接入",
+    "uid": "RrO_U724z",
+    "version": 205,
+    "weekStart": ""
+}

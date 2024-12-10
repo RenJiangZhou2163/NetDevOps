@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  nginx:
+    image: ${REPO_NAME}/${PROJECT}/nginx:stable
+    restart: always
+    container_name: nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./common_locations.conf:/etc/nginx/common_locations.conf:ro
+      - ./cert:/etc/nginx/cert
+      - /var/log/nginx:/var/log/nginx
+    environment:
+      - TZ=Asia/Shanghai
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "3"
+    networks:
+      frontend:
+
+networks:
+  frontend:
+    external: true
+  backend:
+    external: true
+  database:
+    external: true
+  tools_frontend:
+    external: true

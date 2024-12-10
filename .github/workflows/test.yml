@@ -18,11 +18,8 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: get harbor
+      - name: get docker
         run: |
-
-
-
           docker pull frooodle/s-pdf:latest
           docker save frooodle/s-pdf:latest > frooodle-s-pdf-latest.tar.gz
 
