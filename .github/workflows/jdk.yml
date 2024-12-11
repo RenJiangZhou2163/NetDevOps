@@ -1,0 +1,30 @@
+name: OpenJDK
+
+on:
+  push:
+    branches:
+      - main
+  # schedule:
+  #   - cron: "0 0 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build project
+        run: |
+          # 这里添加你的构建命令
+
+          # openjdk
+          docker pull openjdk:8u102-jre
+          docker save -o openjdk_8u102-jre.tar.gz openjdk:8u102-jre
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: openjdk_8u102-jre
+          path: openjdk_8u102-jre.tar.gz
