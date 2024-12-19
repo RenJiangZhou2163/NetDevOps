@@ -1,4 +1,4 @@
-name: OpenJDK
+name: Kong
 
 on:
   push:
