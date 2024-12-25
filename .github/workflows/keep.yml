@@ -20,16 +20,16 @@ jobs:
           images=(
             kong:latest
             us-central1-docker.pkg.dev/keephq/keep/keep-ui
-            # us-central1-docker.pkg.dev/keephq/keep/keep-api
-            # us-central1-docker.pkg.dev/keephq/keep/keep-arq-dashboard
-            # redis/redis-stack
-            # grafana/loki:latest
-            # grafana/tempo:latest
-            # prom/prometheus:latest
-            # prom/alertmanager
-            # grafana/grafana:10.0.3
-            # otel/opentelemetry-collector-contrib:0.81.0
-            # quay.io/soketi/soketi:1.4-16-debian
+            us-central1-docker.pkg.dev/keephq/keep/keep-api
+            us-central1-docker.pkg.dev/keephq/keep/keep-arq-dashboard
+            redis/redis-stack
+            grafana/loki:latest
+            grafana/tempo:latest
+            prom/prometheus:latest
+            prom/alertmanager
+            grafana/grafana:10.0.3
+            otel/opentelemetry-collector-contrib:0.81.0
+            quay.io/soketi/soketi:1.4-16-debian
           )
 
           for img in "${images[@]}"; do

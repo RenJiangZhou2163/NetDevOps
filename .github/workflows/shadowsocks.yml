@@ -17,7 +17,6 @@ jobs:
 
       - name: Build project
         run: |
-          # 这里添加你的构建命令
 
           docker pull shadowsocks/shadowsocks-libev:latest
           docker save -o shadowsocks_shadowsocks-libev.tar.gz shadowsocks/shadowsocks-libev:latest

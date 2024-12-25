@@ -51,7 +51,7 @@ jobs:
           name: grafana-oncall-latest
           path: grafana-oncall-latest.tar.gz
 
-  Grafana-Custom:
+  Grafana-Custom-Latest:
     runs-on: ubuntu-latest
 
     steps:
