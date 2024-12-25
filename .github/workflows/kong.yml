@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-  # schedule:
-  #   - cron: "0 0 * * *"
+  schedule:
+    - cron: "0 0 * * *"
 
 jobs:
   build:
@@ -17,9 +17,6 @@ jobs:
 
       - name: Build project
         run: |
-          # 这里添加你的构建命令
-
-          # openjdk
           docker pull kong:latest
           docker save -o kong_latest.tar.gz kong:latest
 
