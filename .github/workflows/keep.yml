@@ -37,9 +37,14 @@ jobs:
             docker save -o "${img//[:\/]/_}.tar.gz" "$img"
           done
 
-      - name: Upload Image Artifacts
+      - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: docker-images
-          path: |
-            *.tar.gz
+          name: kong_latest
+          path: kong_latest.tar.gz
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: us-central1-docker.pkg.dev_keephq_keep_keep-ui
+          path: us-central1-docker.pkg.dev_keephq_keep_keep-ui.tar.gz
