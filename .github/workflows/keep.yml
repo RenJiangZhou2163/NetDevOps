@@ -34,11 +34,11 @@ jobs:
 
           for img in "${images[@]}"; do
             docker pull "$img"
-            docker save -o "${img//\//_//:/_}.tar.gz" "$img"
+            docker save -o "${img//\//_}.tar.gz" "$img"
           done
 
       - name: Upload Image Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: kong-docker-images
-          path: "*.tar.gz"
+          path: '*.tar.gz'
