@@ -17,25 +17,41 @@ jobs:
 
       - name: Pull and Save Docker images
         run: |
-          images=(
-            kong:latest
-            us-central1-docker.pkg.dev/keephq/keep/keep-ui
-            us-central1-docker.pkg.dev/keephq/keep/keep-api
-            us-central1-docker.pkg.dev/keephq/keep/keep-arq-dashboard
-            redis/redis-stack
-            grafana/loki:latest
-            grafana/tempo:latest
-            prom/prometheus:latest
-            prom/alertmanager
-            grafana/grafana:10.0.3
-            otel/opentelemetry-collector-contrib:0.81.0
-            quay.io/soketi/soketi:1.4-16-debian
-          )
+          docker pull kong:latest
+          docker save -o kong_latest.tar.gz kong:latest
 
-          for img in "${images[@]}"; do
-            docker pull "$img"
-            docker save -o "${img//[:\/]/_}.tar.gz" "$img"
-          done
+          docker pull us-central1-docker.pkg.dev/keephq/keep/keep-ui
+          docker save -o keep_keep-ui.tar.gz us-central1-docker.pkg.dev/keephq/keep/keep-ui
+
+          docker pull us-central1-docker.pkg.dev/keephq/keep/keep-api
+          docker save -o keep_keep-api.tar.gz us-central1-docker.pkg.dev/keephq/keep/keep-api
+
+          docker pull us-central1-docker.pkg.dev/keephq/keep/keep-arq-dashboard
+          docker save -o keep_keep-arq-dashboard.tar.gz us-central1-docker.pkg.dev/keephq/keep/keep-arq-dashboard
+
+          docker pull redis/redis-stack
+          docker save -o redis_redis-stack_latest.tar.gz redis/redis-stack:latest
+
+          docker pull grafana/loki:latest
+          docker save -o grafana_loki_latest.tar.gz grafana/loki:latest
+
+          docker pull grafana/tempo:latest
+          docker save -o grafana_tempo_latest.tar.gz grafana/tempo:latest
+
+          docker pull grafana/grafana:10.0.3
+          docker save -o grafana_grafana_10.0.3.tar.gz grafana/grafana:10.0.3
+
+          docker pull prom/prometheus:latest
+          docker save -o prom_prometheus_latest.tar.gz prom/prometheus:latest
+
+          docker pull prom/alertmanager
+          docker save -o prom_alertmanager_latest.tar.gz prom/alertmanager:latest
+
+          docker pull otel/opentelemetry-collector-contrib:0.81.0
+          docker save -o otel_opentelemetry-collector-contrib:0.81.0.tar.gz otel/opentelemetry-collector-contrib:0.81.0
+
+          docker pull quay.io/soketi/soketi:1.4-16-debian
+          docker save -o soketi_soketi:1.4-16-debian.tar.gz quay.io/soketi/soketi:1.4-16-debian
 
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
