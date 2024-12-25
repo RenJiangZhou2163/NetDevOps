@@ -34,7 +34,7 @@ jobs:
 
           for img in "${images[@]}"; do
             docker pull "$img"
-            docker save -o "${img//\//_}.tar.gz" "$img"
+            docker save -o "${img//[:\/]/_}.tar.gz" "$img"
           done
 
       - name: Upload Image Artifacts
