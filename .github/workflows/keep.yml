@@ -62,5 +62,44 @@ jobs:
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: us-central1-docker.pkg.dev_keephq_keep_keep-ui
-          path: us-central1-docker.pkg.dev_keephq_keep_keep-ui.tar.gz
+          name: keep_keep-ui
+          path: keep_keep-ui.tar.gz
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: keep_keep-api
+          path: keep_keep-api.tar.gz
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: keep_keep-arq-dashboard
+          path: keep_keep-arq-dashboard.tar.gz
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: redis_redis-stack_latest
+          path: redis_redis-stack_latest.tar.gz
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: grafana_loki_latest
+          path: grafana_loki_latest.tar.gz
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: grafana_tempo_latest
+          path: grafana_tempo_latest.tar.gz
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: grafana_grafana_10.0.3
+          path: grafana_grafana_10.0.3.tar.gz
+
+
+
