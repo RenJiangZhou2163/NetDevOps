@@ -48,10 +48,10 @@ jobs:
           docker save -o prom_alertmanager_latest.tar.gz prom/alertmanager:latest
 
           docker pull otel/opentelemetry-collector-contrib:0.81.0
-          docker save -o otel_opentelemetry-collector-contrib:0.81.0.tar.gz otel/opentelemetry-collector-contrib:0.81.0
+          docker save -o otel_opentelemetry-collector-contrib_0.81.0.tar.gz otel/opentelemetry-collector-contrib:0.81.0
 
           docker pull quay.io/soketi/soketi:1.4-16-debian
-          docker save -o soketi_soketi:1.4-16-debian.tar.gz quay.io/soketi/soketi:1.4-16-debian
+          docker save -o soketi_soketi_1.4-16-debian.tar.gz quay.io/soketi/soketi:1.4-16-debian
 
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
@@ -116,11 +116,11 @@ jobs:
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: otel_opentelemetry-collector-contrib:0.81.0
-          path: otel_opentelemetry-collector-contrib:0.81.0.tar.gz
+          name: otel_opentelemetry-collector-contrib
+          path: otel_opentelemetry-collector-contrib_0.81.0.tar.gz
 
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: soketi_soketi:1.4-16-debian
-          path: soketi_soketi:1.4-16-debian.tar.gz
+          name: soketi_soketi_1.4-16-debian
+          path: soketi_soketi_1.4-16-debian.tar.gz
