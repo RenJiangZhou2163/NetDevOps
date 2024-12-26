@@ -101,5 +101,26 @@ jobs:
           name: grafana_grafana_10.0.3
           path: grafana_grafana_10.0.3.tar.gz
 
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: prom_prometheus_latest
+          path: prom_prometheus_latest.tar.gz
 
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: prom_alertmanager_latest
+          path: prom_alertmanager_latest.tar.gz
 
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: otel_opentelemetry-collector-contrib:0.81.0
+          path: otel_opentelemetry-collector-contrib:0.81.0.tar.gz
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: soketi_soketi:1.4-16-debian
+          path: soketi_soketi:1.4-16-debian.tar.gz
