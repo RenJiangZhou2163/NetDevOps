@@ -34,8 +34,6 @@ jobs:
 
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
-        env:
-          IMAGE_NAME: $(echo "${{ matrix.image }}" | sed 's|/|_|g')
         with:
-          name: ${{ env.IMAGE_NAME }}_${{ matrix.tag }}
+          name: $(echo "${{ matrix.image }}" | sed 's|/|_|g')_${{ matrix.tag }}
           path: ${IMAGE_NAME}_${{ matrix.tag }}.tar.gz
