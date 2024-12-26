@@ -37,3 +37,21 @@ jobs:
         with:
           name: $(echo "${{ matrix.image }}" | sed 's|/|_|g')_${{ matrix.tag }}
           path: ${IMAGE_NAME}_${{ matrix.tag }}.tar.gz
+
+
+      - name: Pull and Save Docker images
+        run: |
+          IMAGE_NAME=$(echo "${{ matrix.image_info.image }}" | sed 's|/|_|g')
+          IMAGE="${{ matrix.image_info.source }}/${{ matrix.image_info.image }}"
+          echo "Processing image: $IMAGE with tag ${{ matrix.image_info.tag }}"
+          echo "IMAGE_NAME=${IMAGE_NAME}" >> $GITHUB_ENV
+          docker pull $IMAGE:${{ matrix.image_info.tag }}
+          echo "Successfully pulled $IMAGE:${{ matrix.image_info.tag }}"
+          docker save -o ${IMAGE_NAME}_${{ matrix.image_info.tag }}.tar.gz $IMAGE:${{ matrix.image_info.tag }}
+          echo "Successfully saved image as ${IMAGE_NAME}_${{ matrix.image_info.tag }}.tar.gz"
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: $(echo "${{ matrix.image_info.image }}" | sed 's|/|_|g')_${{ matrix.image_info.tag }}
+          path: $(echo "${{ matrix.image_info.image }}" | sed 's|/|_|g')_${{ matrix.image_info.tag }}.tar.gz
