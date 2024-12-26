@@ -20,6 +20,7 @@ jobs:
           - image: us-central1-docker.pkg.dev/keephq/keep/keep-api
             tag: latest
           # ... 其他镜像配置 ...
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
