@@ -37,15 +37,4 @@ jobs:
         with:
           name: ${{ env.IMAGE_NAME }}_${{ matrix.tag }}
           path: ${IMAGE_NAME}_${{ matrix.tag }}.tar.gz
-        run: |
-          IMAGE_NAME=$(echo "${{ matrix.image }}" | sed 's|/|_|g')
-          docker pull ${{ matrix.image }}:${{ matrix.tag }}
-          docker save -o ${IMAGE_NAME}_${{ matrix.tag }}.tar.gz ${{ matrix.image }}:${{ matrix.tag }}
 
-      - name: Upload Image Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.IMAGE_NAME }}_${{ matrix.tag }}
-          path: ${IMAGE_NAME}_${{ matrix.tag }}.tar.gz
-        env:
-          IMAGE_NAME: $(echo "${{ matrix.image }}" | sed 's|/|_|g')
