@@ -3,3 +3,4 @@
 *.cer
 *.key
 local-test/*
+docker-compose/test/*
