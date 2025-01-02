@@ -4,3 +4,4 @@
 *.key
 local-test/*
 docker-compose/test/*
+docker-compose/testing/*
