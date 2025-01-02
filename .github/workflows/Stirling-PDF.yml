@@ -1,0 +1,45 @@
+name: MySQL
+
+on:
+  # push:
+  #   branches:
+  #     - main
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build project
+        run: |
+          docker pull frooodle/s-pdf:latest-ultra-lite
+          docker save -o frooodle_s-pdf_latest-ultra-lite.tar.gz frooodle/s-pdf:latest-ultra-lite
+
+          docker pull frooodle/s-pdf:latest
+          docker save -o frooodle_s-pdf_latest.tar.gz frooodle/s-pdf:latest
+
+          docker pull frooodle/s-pdf:latest-fat
+          docker save -o frooodle_s-pdf_latest-fat.tar.gz frooodle/s-pdf:latest-fat
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frooodle_s-pdf_latest-ultra-lite
+          path: frooodle_s-pdf_latest-ultra-lite.tar.gz
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frooodle_s-pdf_latest
+          path: frooodle_s-pdf_latest.tar.gz
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frooodle_s-pdf_latest-fat
+          path: frooodle_s-pdf_latest-fat.tar.gz

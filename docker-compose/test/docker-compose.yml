@@ -15,7 +15,10 @@ services:
       - PUSHER_PORT=6001
       - PUSHER_APP_KEY=keepappkey
       - NEXT_PUBLIC_KEEP_VERSION=0.2.9
+
+      - TZ=Asia/Shanghai
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - ./state:/state
     depends_on:
       - keep-backend
@@ -39,8 +42,10 @@ services:
       - PUSHER_PORT=6001
       - USE_NGROK=false
 
-      - KEEP_API_URL=http://10.52.106.5:8080  # 用户根据规划定义
+      - KEEP_API_URL=http://10.52.106.5:8080 # 用户根据规划定义
+      - TZ=Asia/Shanghai
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - ./state:/state
     ports:
       - "8080:8080"
@@ -56,3 +61,7 @@ services:
       - SOKETI_DEFAULT_APP_ID=1
       - SOKETI_DEFAULT_APP_KEY=keepappkey
       - SOKETI_DEFAULT_APP_SECRET=keepappsecret
+
+      - TZ=Asia/Shanghai
+    volumes:
+      - /etc/localtime:/etc/localtime:ro

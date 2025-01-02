@@ -1,0 +1,39 @@
+name: Keep2
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - image: kong
+            tag: latest
+          - image: us-central1-docker.pkg.dev/keephq/keep/keep-ui
+            tag: latest
+          - image: us-central1-docker.pkg.dev/keephq/keep/keep-api
+            tag: latest
+          # ... 其他镜像配置 ...
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Pull and Save Docker images
+        run: |
+          IMAGE_NAME=$(echo "${{ matrix.image }}" | sed 's|/|_|g')
+          echo "IMAGE_NAME=${IMAGE_NAME}" >> $GITHUB_ENV
+          docker pull ${{ matrix.image }}:${{ matrix.tag }}
+          docker save -o ${IMAGE_NAME}_${{ matrix.tag }}.tar.gz ${{ matrix.image }}:${{ matrix.tag }}
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: $(echo "${{ matrix.image }}" | sed 's|/|_|g')_${{ matrix.image_info.tag }}
+          path: $(echo "${{ matrix.image }}" | sed 's|/|_|g')_${{ matrix.image_info.tag }}.tar.gz

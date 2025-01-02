@@ -1,0 +1,23 @@
+version: "3.3"
+services:
+  stirling-pdf:
+    image: frooodle/s-pdf:latest
+    ports:
+      # - '8080:8080'
+      - "10000:8080"
+    volumes:
+      - ./StirlingPDF/trainingData:/usr/share/tessdata # Required for extra OCR languages
+      - ./StirlingPDF/extraConfigs:/configs
+      - ./StirlingPDF/customFiles:/customFiles/
+      - ./StirlingPDF/logs:/logs/
+      - ./StirlingPDF/pipeline:/pipeline/
+    environment:
+      - DOCKER_ENABLE_SECURITY=false
+      - INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
+      - LANGS=en_GB
+
+    healthcheck:  # 健康检查配置
+      test: ["CMD-SHELL", "curl -f http://localhost:9080/api/v1/info/status | grep -q 'UP' && curl -fL http://localhost:9080/ | grep -q 'Please sign in'"]  # 健康检查命令
+      interval: 5s  # 健康检查间隔时间
+      timeout: 10s  # 健康检查超时时间
+      retries: 16  # 健康检查重试次数

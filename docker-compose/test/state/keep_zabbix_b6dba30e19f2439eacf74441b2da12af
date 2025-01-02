@@ -1,1 +1,0 @@
-{"authentication": {"provider_id": "b6dba30e19f2439eacf74441b2da12af", "install_webhook": true, "provider_name": "Zabbix", "zabbix_frontend_url": "http://zabbix.xfusion.com/api_jsonrpc.php", "auth_token": "445c0ca6e606e3deac2544f0270ed18bea103bdc9c9e48db2c466998230e7bb6"}, "name": "Zabbix"}
