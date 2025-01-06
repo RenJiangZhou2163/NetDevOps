@@ -39,10 +39,7 @@ jobs:
       - name: Pull and Save Grafana Image as File
         run: |
           docker pull bitnami/postgresql-repmgr:latest
-          docker save -o postgresql-repmgr-latest.tar.gz bitnami/postgresql-repmgr:latest
-
-          docker pull bitnami/pgpool:latest
-          docker save -o bitnami_pgpool:latest bitnami/pgpool:latest
+          docker save -o bitnami_postgresql-repmgr_latest.tar.gz bitnami/postgresql-repmgr:latest
 
           docker pull dpage/pgadmin4:latest
           docker save -o dpage_pgadmin4_latest.tar.gz dpage/pgadmin4:latest
@@ -53,7 +50,7 @@ jobs:
           name: postgresql-repmgr-latest
           path: postgresql-repmgr-latest.tar.gz
 
-  pgpool-latest:
+  pgpool:
     runs-on: ubuntu-latest
 
     steps:
@@ -74,3 +71,23 @@ jobs:
           name: pgpool-latest
           path: pgpool-latest.tar.gz
 
+  pgadmin4:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Pull and Save Grafana Image as File
+        run: |
+          docker pull dpage/pgadmin4:latest
+          docker save -o dpage_pgadmin4_latest.tar.gz dpage/pgadmin4:latest
+
+      - name: Upload Grafana Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dpage_pgadmin4_latest
+          path: dpage_pgadmin4_latest.tar.gz
