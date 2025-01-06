@@ -1,0 +1,76 @@
+name: Databases
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  MySQL:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build project
+        run: |
+          docker pull mysql:8.0-oracle
+          docker save -o mysql_8.0-oracle.tar.gz mysql:8.0-oracle
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mysql_8.0-oracle
+          path: mysql_8.0-oracle.tar.gz
+
+  postgresql-repmgr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Pull and Save Grafana Image as File
+        run: |
+          docker pull bitnami/postgresql-repmgr:latest
+          docker save -o postgresql-repmgr-latest.tar.gz bitnami/postgresql-repmgr:latest
+
+          docker pull bitnami/pgpool:latest
+          docker save -o bitnami_pgpool:latest bitnami/pgpool:latest
+
+          docker pull dpage/pgadmin4:latest
+          docker save -o dpage_pgadmin4_latest.tar.gz dpage/pgadmin4:latest
+
+      - name: Upload Grafana Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: postgresql-repmgr-latest
+          path: postgresql-repmgr-latest.tar.gz
+
+  pgpool-latest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Pull and Save Grafana Image as File
+        run: |
+          docker pull bitnami/pgpool:latest
+          docker save -o pgpool-latest.tar.gz bitnami/pgpool:latest
+
+      - name: Upload Grafana Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pgpool-latest
+          path: pgpool-latest.tar.gz
+
