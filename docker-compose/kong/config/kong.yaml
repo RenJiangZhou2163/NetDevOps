@@ -1,22 +1,3 @@
 # a very minimal declarative config file
 _format_version: "2.1"
 _transform: true
-
-# 以下是自定义内容
-services:
-  - name: sms-service
-    url: http://apig.xfusion.com
-    routes:
-      - name: sms-route
-        paths:
-          - /api/sns/sms/send/v2
-
-plugins:
-  - name: request-transformer
-    service: sms-service
-    config:
-      add:
-        headers:
-          - X-XX-ID: "aada8067f83042b1bb363493a4713a3a"
-          - X-XX-APPKEY: "Him+1JP/c6sTfjspNA6R7g=="
-          - Content-Type: "application/json"
