@@ -3,5 +3,5 @@
 *.cer
 *.key
 local-test/*
-docker-compose/test/*
-docker-compose/testing/*
+docker-compose-files/test/*
+docker-compose-files/testing/*
