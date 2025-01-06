@@ -22,13 +22,13 @@ jobs:
       - name: Pull and Save Grafana Image as File
         run: |
           docker pull grafana/grafana:latest
-          docker save -o grafana-latest.tar.gz grafana/grafana:latest
+          docker save -o grafana_grafana_latest.tar.gz grafana/grafana:latest
 
       - name: Upload Grafana Image Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: grafana-latest
-          path: grafana-latest.tar.gz
+          name: grafana_grafana_latest
+          path: grafana_grafana_latest.tar.gz
 
   Grafana-OnCall:
     runs-on: ubuntu-latest
@@ -43,13 +43,13 @@ jobs:
       - name: Pull and Save Grafana OnCall Image as File
         run: |
           docker pull grafana/oncall:latest
-          docker save -o grafana-oncall-latest.tar.gz grafana/oncall:latest
+          docker save -o grafana_oncall_latest.tar.gz grafana/oncall:latest
 
       - name: Upload Grafana OnCall Image Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: grafana-oncall-latest
-          path: grafana-oncall-latest.tar.gz
+          name: grafana_oncall_latest
+          path: grafana_oncall_latest.tar.gz
 
   Grafana-Custom-Latest:
     runs-on: ubuntu-latest
@@ -74,10 +74,10 @@ jobs:
 
       - name: Save Grafana Docker image as file
         run: |
-          docker save -o dashboards-latest.tar.gz dashboards:latest
+          docker save -o dashboards_latest.tar.gz dashboards:latest
 
       - name: Upload Grafana Image Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dashboards-latest
-          path: dashboards-latest.tar.gz
+          name: dashboards_latest
+          path: dashboards_latest.tar.gz
