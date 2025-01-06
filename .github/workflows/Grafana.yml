@@ -1,4 +1,4 @@
-# Pull and Save Grafana Docker Images
+# Pull and Save Docker Images
 name: Grafana
 
 on:
