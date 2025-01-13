@@ -41,8 +41,17 @@ jobs:
           docker pull onerahmet/openai-whisper-asr-webservice:latest
           docker save -o onerahmet_openai-whisper-asr-webservice_latest.tar.gz onerahmet/openai-whisper-asr-webservice:latest
 
+          docker pull onerahmet/openai-whisper-asr-webservice:latest-gpu
+          docker save -o onerahmet_openai-whisper-asr-webservice_latest-gpu.tar.gz onerahmet/openai-whisper-asr-webservice:latest-gpu
+
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
         with:
           name: onerahmet_openai-whisper-asr-webservice_latest
           path: onerahmet_openai-whisper-asr-webservice_latest.tar.gz
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: onerahmet_openai-whisper-asr-webservice_latest-gpu
+          path: onerahmet_openai-whisper-asr-webservice_latest-gpu.tar.gz
