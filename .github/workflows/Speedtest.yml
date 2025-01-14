@@ -9,6 +9,8 @@ on:
 
 jobs:
   librespeed:
+    # https://github.com/linuxserver/docker-librespeed
+    # https://github.com/librespeed/speedtest
     runs-on: ubuntu-latest
 
     steps:
