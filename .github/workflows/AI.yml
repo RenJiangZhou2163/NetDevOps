@@ -8,12 +8,30 @@ on:
     - cron: "0 0 * * *"
 
 jobs:
+  MaxKB:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Pull and Save Docker images
+        run: |
+          docker pull cr2.fit2cloud.com/1panel/maxkb
+          docker save -o maxkb.tar.gz cr2.fit2cloud.com/1panel/maxkb
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: maxkb
+          path: maxkb.tar.gz
+
   onerahmet_openai-whisper-asr-webservice_latest:
     runs-on: ubuntu-latest
 
     steps:
-      # - name: Delete huge unnecessary tools folder
-      #   run: rm -rf /opt/hostedtoolcache
+      - name: Delete huge unnecessary tools folder
+        run: rm -rf /opt/hostedtoolcache
 
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -31,27 +49,3 @@ jobs:
         with:
           name: onerahmet_openai-whisper-asr-webservice_latest
           path: onerahmet_openai-whisper-asr-webservice_latest.tar.gz
-
-  onerahmet_openai-whisper-asr-webservice_latest-gpu:
-    runs-on: ubuntu-latest
-
-    steps:
-      # - name: Delete huge unnecessary tools folder
-      #   run: rm -rf /opt/hostedtoolcache
-
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Pull and Save Image as File
-        run: |
-          docker pull onerahmet/openai-whisper-asr-webservice:latest-gpu
-          docker save -o onerahmet_openai-whisper-asr-webservice_latest-gpu.tar.gz onerahmet/openai-whisper-asr-webservice:latest-gpu
-
-      - name: Upload Image Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: onerahmet_openai-whisper-asr-webservice_latest-gpu
-          path: onerahmet_openai-whisper-asr-webservice_latest-gpu.tar.gz
