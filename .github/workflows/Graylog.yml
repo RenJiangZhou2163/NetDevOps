@@ -1,0 +1,27 @@
+name: Graylog
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  Graylog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build project
+        run: |
+          docker pull graylog/graylog:6.1
+          docker save -o graylog_graylog_6.1.tar.gz graylog/graylog:6.1
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: graylog_graylog_6.1
+          path: graylog_graylog_6.1.tar.gz
