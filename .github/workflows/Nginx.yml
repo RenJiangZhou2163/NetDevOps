@@ -1,0 +1,38 @@
+name: Nginx
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build project
+        run: |
+          # 这里添加你的构建命令
+
+          docker pull nginx:stable
+          docker save -o nginx_stable.tar.gz nginx:stable
+
+          docker pull nginx:1.26
+          docker save -o nginx_1.26.tar.gz nginx:1.26
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nginx_stable.tar
+          path: nginx_stable.tar.gz
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nginx_1.26.tar
+          path: nginx_1.26.tar.gz
