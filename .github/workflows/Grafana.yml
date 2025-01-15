@@ -24,11 +24,20 @@ jobs:
           docker pull grafana/grafana:latest
           docker save -o grafana_grafana_latest.tar.gz grafana/grafana:latest
 
-      - name: Upload Grafana Image Artifact
+          docker pull grafana/grafana:11.4.0
+          docker save -o grafana_grafana_11.4.0.tar.gz grafana/grafana:11.4.0
+
+      - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
         with:
           name: grafana_grafana_latest
           path: grafana_grafana_latest.tar.gz
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: grafana_grafana_11.4.0
+          path: grafana_grafana_11.4.0.tar.gz
 
   Grafana-OnCall:
     runs-on: ubuntu-latest
