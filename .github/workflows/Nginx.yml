@@ -28,11 +28,11 @@ jobs:
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: nginx_stable.tar
+          name: nginx_stable
           path: nginx_stable.tar.gz
 
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: nginx_1.26.tar
+          name: nginx_1.26
           path: nginx_1.26.tar.gz
