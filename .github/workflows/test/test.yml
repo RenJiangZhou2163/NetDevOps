@@ -26,29 +26,5 @@ jobs:
       - name: Upload Grafana Image Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: harbor-offline-installer
-          path: harbor-offline-installer-v2.11.1.tgz
-
-      - name: Upload Grafana Image Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: postgresql-repmgr-latest
-          path: postgresql-repmgr-latest.tar.gz
-
-      - name: Upload Grafana Image Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: pgpool-latest
-          path: pgpool-latest.tar.gz
-
-      - name: Upload Grafana Image Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: pgadmin4-latest
-          path: pgadmin4-latest.tar.gz
-
-      - name: Upload Grafana Image Artifact
-        uses: actions/upload-artifact@v4
-        with:
           name: frooodle-s-pdf-latest
           path: frooodle-s-pdf-latest.tar.gz
