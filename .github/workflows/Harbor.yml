@@ -28,7 +28,7 @@ jobs:
           name: harbor-offline-installer
           path: harbor-offline-installer-v2.11.1.tgz
 
-  Graylog:
+  trivy-db:
     runs-on: ubuntu-latest
 
     steps:
