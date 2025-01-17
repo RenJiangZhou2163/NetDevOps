@@ -22,8 +22,17 @@ jobs:
         run: |
           wget https://github.com/goharbor/harbor/releases/download/v2.11.1/harbor-offline-installer-v2.11.1.tgz
 
-      - name: Upload Grafana Image Artifact
+          docker pull ghcr.io/aquasecurity/trivy-db:2
+          docker save -o trivy-db_2.tar.gz ghcr.io/aquasecurity/trivy-db:2
+
+      - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
         with:
           name: harbor-offline-installer
           path: harbor-offline-installer-v2.11.1.tgz
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-db_2.tar
+          path: trivy-db_2.tar.gz
