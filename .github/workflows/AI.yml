@@ -50,7 +50,7 @@ jobs:
           name: onerahmet_openai-whisper-asr-webservice_latest
           path: onerahmet_openai-whisper-asr-webservice_latest.tar.gz
 
-  ollama:
+  ollama_ollama:
     runs-on: ubuntu-latest
 
     steps:
@@ -65,9 +65,6 @@ jobs:
 
       - name: Pull and Save Image as File
         run: |
-          docker pull ollama/ollama:latest
-          docker save -o ollama_ollama_latest.tar.gz ollama/ollama:latest
-
           docker pull ollama/ollama:0.5.7
           docker save -o ollama_ollama_0.5.7.tar.gz ollama/ollama:0.5.7
 
