@@ -22,14 +22,23 @@ jobs:
         run: |
           wget https://github.com/goharbor/harbor/releases/download/v2.11.1/harbor-offline-installer-v2.11.1.tgz
 
-          docker pull ghcr.io/aquasecurity/trivy-db:2
-          docker save -o trivy-db_2.tar.gz ghcr.io/aquasecurity/trivy-db:2
-
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
         with:
           name: harbor-offline-installer
           path: harbor-offline-installer-v2.11.1.tgz
+
+  Graylog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build project
+        run: |
+          docker pull ghcr.io/aquasecurity/trivy-db:2
+          docker save -o trivy-db_2.tar.gz ghcr.io/aquasecurity/trivy-db:2
 
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
