@@ -50,7 +50,7 @@ jobs:
           name: onerahmet_openai-whisper-asr-webservice_latest
           path: onerahmet_openai-whisper-asr-webservice_latest.tar.gz
 
-  ollama_ollama_latest:
+  ollama:
     runs-on: ubuntu-latest
 
     steps:
@@ -67,6 +67,9 @@ jobs:
         run: |
           docker pull ollama/ollama:latest
           docker save -o ollama_ollama_latest.tar.gz ollama/ollama:latest
+
+          docker pull ollama/ollama:0.5.7
+          docker save -o ollama_ollama_0.5.7.tar.gz ollama/ollama:0.5.7
 
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
