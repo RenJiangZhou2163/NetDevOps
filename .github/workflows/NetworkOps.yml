@@ -83,15 +83,15 @@ jobs:
         with:
           context: .
           file: ./packaging/docker/custom/Dockerfile.nautobot
-          tags: nautobot:latest
+          tags: nautobot-custom:latest
           load: true
 
       - name: Save Nautobot Docker image as file
         run: |
-          docker save -o nautobot-latest.tar.gz nautobot:latest
+          docker save -o nautobot-latest.tar.gz nautobot-custom:latest
 
       - name: Upload Nautobot Image Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: nautobot-latest
-          path: nautobot-latest.tar.gz
+          name: nautobot-custom
+          path: nautobot-custom_latest.tar.gz
