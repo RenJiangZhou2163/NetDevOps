@@ -19,7 +19,7 @@ jobs:
       - name: Build project
         run: |
           docker pull ghcr.io/librespeed/speedtest:latest
-          docker save -o librespeed_latest.tar.gz docker pull ghcr.io/librespeed/speedtest:latest
+          docker save -o librespeed_latest.tar.gz ghcr.io/librespeed/speedtest:latest
 
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
@@ -39,7 +39,7 @@ jobs:
       - name: Build project
         run: |
           docker pull linuxserver/librespeed:latest
-          docker save -o linuxserver_librespeed_latest.tar.gz inuxserver/librespeed:latest
+          docker save -o linuxserver_librespeed_latest.tar.gz linuxserver/librespeed:latest
 
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
