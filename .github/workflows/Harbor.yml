@@ -25,7 +25,7 @@ jobs:
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: harbor-offline-installer
+          name: harbor-offline-installer-2.12.2
           path: harbor-offline-installer-v2.12.2.tgz
 
   trivy-db:
