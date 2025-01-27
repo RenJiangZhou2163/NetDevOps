@@ -2,6 +2,6 @@
 *.crt
 *.cer
 *.key
-local-test/*
 docker-compose-files/test/*
 docker-compose-files/testing/*
+test/*

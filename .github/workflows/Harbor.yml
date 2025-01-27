@@ -37,11 +37,22 @@ jobs:
 
       - name: Build project
         run: |
-          docker pull ghcr.io/aquasecurity/trivy-db:2
-          docker save -o trivy-db_2.tar.gz ghcr.io/aquasecurity/trivy-db:2
+          # 安装 oras
+          export VERSION="1.0.0" 
+          curl -LO "https://github.com/oras-project/oras/releases/download/v${VERSION}/oras_${VERSION}_linux_amd64.tar.gz"
+          mkdir -p oras-install/
+          tar -zxf oras_${VERSION}_*.tar.gz -C oras-install/
+          sudo mv oras-install/oras /usr/local/bin/
+          rm -rf oras_${VERSION}_*.tar.gz oras-install/
+
+          # 查看 oras 版本
+          oras version
+
+          # 使用oras拉取trivy-db 2
+          oras pull ghcr.io/aquasecurity/trivy-db:2
 
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: trivy-db_2
-          path: trivy-db_2.tar.gz
+          name: db
+          path: db.tar.gz
