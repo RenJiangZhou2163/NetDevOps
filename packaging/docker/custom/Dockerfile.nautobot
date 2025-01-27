@@ -1,4 +1,6 @@
-FROM networktocode/nautobot:latest
+ARG NAUTOBOT_VERSION="latest"
+
+FROM networktocode/nautobot:${NAUTOBOT_VERSION}
 
 RUN pip install nautobot-plugin-nornir && \
     pip install nautobot-firewall-models && \
