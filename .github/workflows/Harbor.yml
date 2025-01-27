@@ -20,13 +20,14 @@ jobs:
 
       - name: get harbor
         run: |
-          wget https://github.com/goharbor/harbor/releases/download/v2.11.1/harbor-offline-installer-v2.11.1.tgz
+          export VERSION="2.12.2" 
+          wget https://github.com/goharbor/harbor/releases/download/v${VERSION}//harbor-offline-installer-v${VERSION}.tgz
 
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
         with:
           name: harbor-offline-installer
-          path: harbor-offline-installer-v2.11.1.tgz
+          path: harbor-offline-installer-v${VERSION}.tgz
 
   trivy-db:
     runs-on: ubuntu-latest
