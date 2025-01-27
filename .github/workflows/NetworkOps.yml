@@ -68,7 +68,7 @@ jobs:
           name: netbox-latest
           path: netbox-latest.tar.gz
 
-  Nautobot-Custom:
+  Nautobot-Custom-latest:
     runs-on: ubuntu-latest
 
     steps:
@@ -88,6 +88,26 @@ jobs:
           tags: nautobot-custom:latest
           load: true
 
+      - name: Save Nautobot Docker image as file
+        run: |
+          docker save -o nautobot-custom_latest.tar.gz nautobot-custom:latest
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nautobot-custom_latest
+          path: nautobot-custom_latest.tar.gz
+
+  Nautobot-Custom-stable:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Build and push Nautobot image with plugins
         uses: docker/build-push-action@v5
         with:
@@ -98,7 +118,27 @@ jobs:
           tags: nautobot-custom:stable
           load: true
 
-      - name: Build and push Nautobot image with plugins
+      - name: Save Nautobot Docker image as file
+        run: |
+          docker save -o nautobot-custom_stable.tar.gz nautobot-custom:stable
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nautobot-custom_stable
+          path: nautobot-custom_stable.tar.gz
+
+  Nautobot-Custom-2_4:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push image with plugins
         uses: docker/build-push-action@v5
         with:
           context: .
@@ -108,23 +148,9 @@ jobs:
           tags: nautobot-custom:2.4
           load: true
 
-      - name: Save Nautobot Docker image as file
+      - name: Save Docker image as file
         run: |
-          docker save -o nautobot-custom_latest.tar.gz nautobot-custom:latest
-          docker save -o nautobot-custom_stable.tar.gz nautobot-custom:stable
           docker save -o nautobot-custom_2.4.tar.gz nautobot-custom:2.4
-
-      - name: Upload Image Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: nautobot-custom_latest
-          path: nautobot-custom_latest.tar.gz
-
-      - name: Upload Image Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: nautobot-custom_stable
-          path: nautobot-custom_stable.tar.gz
 
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
