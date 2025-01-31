@@ -5,3 +5,12 @@
 docker-compose-files/test/*
 docker-compose-files/testing/*
 test/*
+
+awesome-compose/manim/scripts/.local/*
+awesome-compose/manim/scripts/.jupyter/*
+awesome-compose/manim/scripts/.ipython/*
+awesome-compose/manim/scripts/.cache/fontconfig/*
+awesome-compose/manim/scripts/.ipynb_checkpoints/*
+__pycache__
+.ipynb_checkpoints
+awesome-compose/manim/scripts/.bash_history

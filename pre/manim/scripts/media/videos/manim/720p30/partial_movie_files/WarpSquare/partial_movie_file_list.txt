@@ -1,3 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/manim/media/videos/manim/720p30/partial_movie_files/WarpSquare/2016333726_3752176559_557880437.mp4'
-file 'file:/manim/media/videos/manim/720p30/partial_movie_files/WarpSquare/543634251_2834709167_2139097023.mp4'
