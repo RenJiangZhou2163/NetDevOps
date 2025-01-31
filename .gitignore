@@ -5,7 +5,6 @@
 docker-compose-files/test/*
 docker-compose-files/testing/*
 test/*
-
 awesome-compose/manim/scripts/.local/*
 awesome-compose/manim/scripts/.jupyter/*
 awesome-compose/manim/scripts/.ipython/*
