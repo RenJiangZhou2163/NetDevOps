@@ -1,0 +1,19 @@
+services:
+  ollama-webui:
+    image: hub.xfusion.com/library/ghcr.io/open-webui/open-webui:main
+    container_name: ollama-webui
+    restart: unless-stopped
+    environment:
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+      - ENV=dev
+
+      - WEBUI_AUTH=False
+      - WEBUI_NAME=valiantlynx AI
+      - WEBUI_URL=http://localhost:8080
+      - WEBUI_SECRET_KEY=t0p-s3cr3t
+    volumes:
+      - ./ollama-webui/data:/app/backend/data
+    ports:
+      - "3010:8080"
+    extra_hosts:
+      - host.docker.internal:host-gateway
