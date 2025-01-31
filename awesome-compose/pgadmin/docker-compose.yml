@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   pgadmin:
-    image: hub.xfusion.com/library/dpage/pgadmin4:latest
+    image: ${IMAGE_PREFIX}dpage/pgadmin4:latest
     container_name: pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@example.com

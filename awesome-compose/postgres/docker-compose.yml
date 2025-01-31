@@ -3,7 +3,7 @@ version: '3.5'
 services:
   postgres:
     container_name: postgres
-    image: hub.xfusion.com/library/postgres:latest
+    image: ${IMAGE_PREFIX}postgres:latest
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
