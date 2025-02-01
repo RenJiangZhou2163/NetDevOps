@@ -25,7 +25,7 @@ networks:
 
 services:
   kong-migrations:
-    image: "${KONG_DOCKER_TAG:-kong:latest}"
+    image: ${IMAGE_PREFIX}${KONG_DOCKER_TAG:-kong:latest}
     command: kong migrations bootstrap
     profiles: [ "database" ]
     depends_on:
@@ -39,7 +39,7 @@ services:
     restart: on-failure
 
   kong-migrations-up:
-    image: "${KONG_DOCKER_TAG:-kong:latest}"
+    image: ${IMAGE_PREFIX}${KONG_DOCKER_TAG:-kong:latest}
     command: kong migrations up && kong migrations finish
     profiles: [ "database" ]
     depends_on:
@@ -53,7 +53,7 @@ services:
     restart: on-failure
 
   kong:
-    image: "${KONG_DOCKER_TAG:-kong:latest}"
+    image: ${IMAGE_PREFIX}${KONG_DOCKER_TAG:-kong:latest}
     user: "${KONG_USER:-kong}"
     environment:
       <<: *kong-env
@@ -98,7 +98,7 @@ services:
       - no-new-privileges
 
   db:
-    image: postgres:9.5
+    image: ${IMAGE_PREFIX}postgres:9.5
     profiles: [ "database" ]
     environment:
       POSTGRES_DB: ${KONG_PG_DATABASE:-kong}
