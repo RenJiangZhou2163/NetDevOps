@@ -1,5 +1,0 @@
-{
-    "yaml.schemas": {
-        "https://json.schemastore.org/github-workflow.json": "file:///tmp/Code/000/NetDevOps/.github/workflows/kong.yml"
-    }
-}
