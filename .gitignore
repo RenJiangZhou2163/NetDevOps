@@ -14,3 +14,4 @@ __pycache__
 .ipynb_checkpoints
 awesome-compose/manim/scripts/.bash_history
 awesome-compose/Stirling-PDF/StirlingPDF
+awesome-compose/ollama-webui/ollama-webui
