@@ -2,6 +2,7 @@
 *.crt
 *.cer
 *.key
+.vscode
 docker-compose-files/test/*
 docker-compose-files/testing/*
 test/*
