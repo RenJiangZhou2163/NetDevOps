@@ -34,3 +34,17 @@ docker-compose.yml包含3个服务：
 - keep-frontend - 一个作为 Keep UI 界面的 nextjs 应用程序。
 
 - keep-websocket-server - Soketi（推送器兼容的 websocket 服务器）用于实时警报。
+
+
+
+
+## Providers
+
+|        |                                                                        |
+| ------ | ---------------------------------------------------------------------- |
+| zabbix | https://docs.keephq.dev/providers/documentation/zabbix-provider#zabbix |
+|        |                                                                        |
+|        |                                                                        |
+
+
+
