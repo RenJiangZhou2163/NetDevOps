@@ -48,7 +48,7 @@ jobs:
           # 查看 oras 版本
           oras version
 
-          # 使用oras拉取trivy-db 2
+          # 使用oras拉取trivy-db:2
           oras pull ghcr.io/aquasecurity/trivy-db:2
 
       - name: Upload Image Artifact
@@ -56,3 +56,32 @@ jobs:
         with:
           name: trivy-db
           path: db.tar.gz
+
+  trivy-java-db:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build project
+        run: |
+          # 安装 oras
+          export VERSION="1.0.0" 
+          curl -LO "https://github.com/oras-project/oras/releases/download/v${VERSION}/oras_${VERSION}_linux_amd64.tar.gz"
+          mkdir -p oras-install/
+          tar -zxf oras_${VERSION}_*.tar.gz -C oras-install/
+          sudo mv oras-install/oras /usr/local/bin/
+          rm -rf oras_${VERSION}_*.tar.gz oras-install/
+
+          # 查看 oras 版本
+          oras version
+
+          # 使用oras拉取trivy-java-db:1
+          oras pull ghcr.io/aquasecurity/trivy-java-db:1
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-java-db:1
+          path: javadb.tar.gz
