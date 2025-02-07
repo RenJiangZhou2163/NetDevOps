@@ -1,0 +1,49 @@
+name: Prometheus
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Prometheus:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Pull and save Prometheus image
+        run: |
+          docker pull prom/prometheus:latest
+          docker save -o prom-prometheus-latest.tar.gz prom/prometheus:latest
+
+      - name: Upload Prometheus image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: prom-prometheus-latest
+          path: prom-prometheus-latest.tar.gz
+
+  Alertmanager:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Pull and save Prometheus Alertmanager image
+        run: |
+          docker pull prom/alertmanager:latest
+          docker save -o prom-alertmanager-latest.tar.gz prom/alertmanager:latest
+
+      - name: Upload Prometheus Alertmanager image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: prom-alertmanager-latest
+          path: prom-alertmanager-latest.tar.gz

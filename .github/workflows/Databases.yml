@@ -20,11 +20,20 @@ jobs:
           docker pull mysql:8.0-oracle
           docker save -o mysql_8.0-oracle.tar.gz mysql:8.0-oracle
 
+          docker pull mysql:8.0.36 
+          docker save -o mysql-8.0.36.tar.gz mysql:8.0.36
+
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
         with:
           name: mysql_8.0-oracle
           path: mysql_8.0-oracle.tar.gz
+
+      - name: Upload MySQL Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mysql-8.0.36
+          path: mysql-8.0.36.tar.gz
 
   postgresql-repmgr:
     runs-on: ubuntu-latest
@@ -91,3 +100,45 @@ jobs:
         with:
           name: dpage_pgadmin4_latest
           path: dpage_pgadmin4_latest.tar.gz
+
+  MongoDB:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Pull and Save MongoDB Image
+        run: |
+          docker pull mongo:5.0.26 
+          docker save -o mongo-5.0.26.tar.gz mongo:5.0.26
+
+      - name: Upload MongoDB Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mongo-5.0.26
+          path: mongo-5.0.26.tar.gz
+
+  PostgreSQL:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Pull and Save Image as File
+        run: |
+          docker pull postgres:latest
+          docker save -o postgres.tar.gz postgres:latest
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: postgres-latest
+          path: postgres.tar.gz

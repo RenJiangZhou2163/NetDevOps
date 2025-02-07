@@ -1,3 +1,6 @@
+# https://hub.docker.com/u/graylog
+# https://hub.docker.com/r/opensearchproject/opensearch
+
 name: Graylog
 
 on:
@@ -25,3 +28,45 @@ jobs:
         with:
           name: graylog_graylog_6.1
           path: graylog_graylog_6.1.tar.gz
+
+  OpenSearch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Pull and save OpenSearch image
+        run: |
+          docker pull opensearchproject/opensearch:latest
+          docker save -o opensearch-latest.tar.gz opensearchproject/opensearch:latest
+
+      - name: Upload OpenSearch Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: opensearch-latest
+          path: opensearch-latest.tar.gz
+
+  Datanode:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Pull and save OpenSearch image
+        run: |
+          docker pull graylog/graylog-datanode:6.1
+          docker save -o graylog-datanode-6.1.gz graylog/graylog-datanode:6.1
+
+      - name: Upload OpenSearch Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: graylog-datanode
+          path: graylog-datanode-6.1.gz

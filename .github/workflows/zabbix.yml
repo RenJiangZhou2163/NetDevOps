@@ -1,4 +1,4 @@
-name: zabbix
+name: Zabbix
 
 on:
   # push:
@@ -8,7 +8,7 @@ on:
     - cron: "0 0 * * *"
 
 jobs:
-  build:
+  Zabbix:
     runs-on: ubuntu-latest
 
     steps:
