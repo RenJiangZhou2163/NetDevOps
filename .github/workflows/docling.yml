@@ -23,7 +23,7 @@ jobs:
         run: |
           cd docling
           pwd
-          ll
+          ls -a
 
       - name: Build
         uses: docker/build-push-action@v5
