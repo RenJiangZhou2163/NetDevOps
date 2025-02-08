@@ -35,7 +35,7 @@ jobs:
       - name: Build
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./docling
           file: ./docling/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/docling:main
           load: true
