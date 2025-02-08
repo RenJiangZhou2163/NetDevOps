@@ -24,7 +24,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: .
+          file: ./Dockerfile
           # build-args: |
           tags: docling:main
           load: true
