@@ -1,9 +1,9 @@
 name: Test
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   schedule:
     - cron: "0 0 * * *"
 
@@ -15,7 +15,6 @@ jobs:
         nautobot_version:
           [
             latest,
-            latest-py3.12,
             latest-py3.12,
             latest-py3.11,
             latest-py3.10,
