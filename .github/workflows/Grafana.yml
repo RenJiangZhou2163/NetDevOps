@@ -6,7 +6,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 0 * * 0"
 
 jobs:
   Grafana:
@@ -78,7 +78,7 @@ jobs:
           name: grafana_oncall_latest
           path: grafana_oncall_latest.tar.gz
 
-  Grafana-Custom-Latest:
+  Grafana-Plugins:
     runs-on: ubuntu-latest
 
     steps:
@@ -117,20 +117,3 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/grafana-plugins:10.2.0
           load: true
           push: true
-
-      - name: Save Docker image as file
-        run: |
-          docker save -o grafana_grafana-custom_latest.tar.gz renjiangzhou/grafana-plugins:latest
-          docker save -o grafana_grafana-custom_10.2.0.tar.gz renjiangzhou/grafana-plugins:10.2.0
-
-      - name: Upload Image Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: grafana_grafana-custom_latest
-          path: grafana_grafana-custom_latest.tar.gz
-
-      - name: Upload Image Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: grafana_grafana-custom_10.2.0
-          path: grafana_grafana-custom_10.2.0.tar.gz
