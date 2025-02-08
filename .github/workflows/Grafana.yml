@@ -120,8 +120,8 @@ jobs:
 
       - name: Save Docker image as file
         run: |
-          docker save -o grafana_grafana-custom_latest.tar.gz grafana/grafana-plugins:latest
-          docker save -o grafana_grafana-custom_10.2.0.tar.gz grafana/grafana-plugins:10.2.0
+          docker save -o grafana_grafana-custom_latest.tar.gz renjiangzhou/grafana-plugins:latest
+          docker save -o grafana_grafana-custom_10.2.0.tar.gz renjiangzhou/grafana-plugins:10.2.0
 
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
