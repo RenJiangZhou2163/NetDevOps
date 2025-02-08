@@ -19,10 +19,13 @@ jobs:
         run: |
           git clone https://github.com/DS4SD/docling.git
 
+      - name: Set working directory
+        run: cd ./docling
+
       - name: Build
         uses: docker/build-push-action@v5
         with:
-          context: ./docling
+          context: .
           file: Dockerfile
           tags: docling:main
           load: true
