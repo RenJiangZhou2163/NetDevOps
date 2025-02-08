@@ -19,13 +19,13 @@ jobs:
         run: |
           git clone https://github.com/DS4SD/docling.git
 
-      - name: Set working directory
-        run: |
-          pwd
-          ls -a 
-          cd docling
-          pwd
-          ls -a
+      # - name: Set working directory
+      #   run: |
+      #     pwd
+      #     ls -a 
+      #     cd docling
+      #     pwd
+      #     ls -a
 
       - name: Build
         uses: docker/build-push-action@v5
