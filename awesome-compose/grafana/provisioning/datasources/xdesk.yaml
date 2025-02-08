@@ -1,0 +1,22 @@
+# 2024-11-22 13:42:22
+# 测试通过
+# renjiangzhou@xfusion.com
+
+apiVersion: 1
+
+# deleteDatasources:
+#   - name: xDesk-站点列表
+
+datasources:
+  - name: xDesk
+    type: marcusolsson-json-datasource
+    access: proxy
+    orgId: 1
+    uid: adoigobotbv9ce
+    url: http://nginx/
+    isDefault: false
+    jsonData:
+      httpHeaderName1: sign
+    secureJsonData:
+      httpHeaderValue1: 6ba1c74965b7a3b947ae5688cc3c359a
+    readOnly: false

@@ -1,6 +1,6 @@
 services:
   prometheus:
-    image: ${IMAGE_PREFIX}prom/prometheus
+    image: ${IMAGE_PREFIX}/prom/prometheus
     container_name: prometheus
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"

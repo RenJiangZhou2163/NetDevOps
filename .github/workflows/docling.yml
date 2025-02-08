@@ -1,0 +1,40 @@
+name: docling
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Pull and Save Docker images
+        run: |
+          git clone https://github.com/DS4SD/docling.git
+          cd docling
+
+      - name: Build
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: .
+          # build-args: |
+          tags: docling:main
+          load: true
+
+      - name: Save Docker image as file
+        run: |
+          docker save -o docling_main.tar.gz docling:main
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docling_main
+          path: docling_main.tar.gz

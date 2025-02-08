@@ -1,13 +1,13 @@
 services:
   anything-llm:
-    image: ${IMAGE_PREFIX}mintplexlabs/anythingllm:latest
+    image: ${IMAGE_PREFIX}/mintplexlabs/anythingllm:latest
     container_name: anything-llm
     ports:
-    - "3001:3001"
+      - "3001:3001"
     cap_add:
       - SYS_ADMIN
     environment:
-    # Adjust for your environment
+      # Adjust for your environment
       - SERVER_PORT=3001
       - UID='1000'
       - GID='1000'

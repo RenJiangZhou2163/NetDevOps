@@ -1,12 +1,17 @@
+version: "3.5"
+
 services:
   grafana:
     image: ${IMAGE_PREFIX}/grafana/grafana
     container_name: grafana
+    host_name: grafana
+    restart: unless-stopped
     ports:
       - 3000:3000
-    restart: unless-stopped
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=grafana
     volumes:
-      - ./grafana:/etc/grafana/provisioning/datasources
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./provisioning:/etc/grafana/provisioning:ro

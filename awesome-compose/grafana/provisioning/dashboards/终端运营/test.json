@@ -1,0 +1,612 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": {
+                    "type": "grafana",
+                    "uid": "-- Grafana --"
+                },
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "target": {
+                    "limit": 100,
+                    "matchAny": false,
+                    "tags": [],
+                    "type": "dashboard"
+                },
+                "type": "dashboard"
+            }
+        ]
+    },
+    "description": "",
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 47,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+        {
+            "collapsed": false,
+            "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 0
+            },
+            "id": 52,
+            "panels": [],
+            "title": "概览",
+            "type": "row"
+        },
+        {
+            "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "d7523011-6540-4ada-8426-3bffd3808017"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 20,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "smooth",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "auto",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "decimals": 0,
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 8,
+                "x": 0,
+                "y": 1
+            },
+            "id": 47,
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "max",
+                        "min",
+                        "lastNotNull"
+                    ],
+                    "displayMode": "table",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "maxHeight": 600,
+                    "mode": "single",
+                    "sort": "none"
+                }
+            },
+            "targets": [
+                {
+                    "application": {
+                        "filter": ""
+                    },
+                    "countTriggersBy": "",
+                    "datasource": {
+                        "type": "alexanderzobnin-zabbix-datasource",
+                        "uid": "d7523011-6540-4ada-8426-3bffd3808017"
+                    },
+                    "evaltype": "0",
+                    "functions": [
+                        {
+                            "added": true,
+                            "def": {
+                                "category": "Aggregate",
+                                "defaultParams": [],
+                                "name": "sumSeries",
+                                "params": []
+                            },
+                            "params": [],
+                            "text": "sumSeries()"
+                        },
+                        {
+                            "added": true,
+                            "def": {
+                                "category": "Alias",
+                                "defaultParams": [],
+                                "name": "setAlias",
+                                "params": [
+                                    {
+                                        "name": "alias",
+                                        "type": "string"
+                                    }
+                                ]
+                            },
+                            "params": [
+                                "办公网实时在线终端数"
+                            ],
+                            "text": "setAlias()"
+                        }
+                    ],
+                    "group": {
+                        "filter": "网络设备-$Group"
+                    },
+                    "host": {
+                        "filter": "/MSCG|-AC-01/"
+                    },
+                    "item": {
+                        "filter": "/.*/"
+                    },
+                    "itemTag": {
+                        "filter": "AAA: OnlineNum"
+                    },
+                    "macro": {
+                        "filter": ""
+                    },
+                    "options": {
+                        "count": false,
+                        "disableDataAlignment": false,
+                        "showDisabledItems": false,
+                        "skipEmptyValues": false,
+                        "useTrends": "default",
+                        "useZabbixValueMapping": false
+                    },
+                    "proxy": {
+                        "filter": ""
+                    },
+                    "queryType": "0",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "schema": 12,
+                    "table": {
+                        "skipEmptyValues": false
+                    },
+                    "tags": {
+                        "filter": ""
+                    },
+                    "textFilter": "",
+                    "trigger": {
+                        "filter": ""
+                    }
+                }
+            ],
+            "title": "办公网实时在线终端数",
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "d7523011-6540-4ada-8426-3bffd3808017"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 20,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "smooth",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "auto",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "decimals": 0,
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 8,
+                "x": 8,
+                "y": 1
+            },
+            "id": 48,
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "max",
+                        "min",
+                        "lastNotNull"
+                    ],
+                    "displayMode": "table",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "maxHeight": 600,
+                    "mode": "single",
+                    "sort": "none"
+                }
+            },
+            "targets": [
+                {
+                    "application": {
+                        "filter": ""
+                    },
+                    "countTriggersBy": "",
+                    "datasource": {
+                        "type": "alexanderzobnin-zabbix-datasource",
+                        "uid": "d7523011-6540-4ada-8426-3bffd3808017"
+                    },
+                    "evaltype": "0",
+                    "functions": [
+                        {
+                            "added": true,
+                            "def": {
+                                "category": "Aggregate",
+                                "defaultParams": [],
+                                "name": "sumSeries",
+                                "params": []
+                            },
+                            "params": [],
+                            "text": "sumSeries()"
+                        },
+                        {
+                            "added": true,
+                            "def": {
+                                "category": "Alias",
+                                "defaultParams": [],
+                                "name": "setAlias",
+                                "params": [
+                                    {
+                                        "name": "alias",
+                                        "type": "string"
+                                    }
+                                ]
+                            },
+                            "params": [
+                                "办公网实时在线终端数-有线"
+                            ],
+                            "text": "setAlias()"
+                        }
+                    ],
+                    "group": {
+                        "filter": "网络设备-$Group"
+                    },
+                    "host": {
+                        "filter": "/MSCG|-AC-01/"
+                    },
+                    "item": {
+                        "filter": "hwTotalWrdOnlineNum"
+                    },
+                    "itemTag": {
+                        "filter": "AAA: OnlineNum"
+                    },
+                    "macro": {
+                        "filter": ""
+                    },
+                    "options": {
+                        "count": false,
+                        "disableDataAlignment": false,
+                        "showDisabledItems": false,
+                        "skipEmptyValues": false,
+                        "useTrends": "default",
+                        "useZabbixValueMapping": false
+                    },
+                    "proxy": {
+                        "filter": ""
+                    },
+                    "queryType": "0",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "schema": 12,
+                    "table": {
+                        "skipEmptyValues": false
+                    },
+                    "tags": {
+                        "filter": ""
+                    },
+                    "textFilter": "",
+                    "trigger": {
+                        "filter": ""
+                    }
+                }
+            ],
+            "title": "办公网实时在线终端数-有线",
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "d7523011-6540-4ada-8426-3bffd3808017"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 20,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "smooth",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "auto",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "decimals": 0,
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 8,
+                "x": 16,
+                "y": 1
+            },
+            "id": 49,
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "max",
+                        "min",
+                        "lastNotNull"
+                    ],
+                    "displayMode": "table",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "maxHeight": 600,
+                    "mode": "single",
+                    "sort": "none"
+                }
+            },
+            "targets": [
+                {
+                    "application": {
+                        "filter": ""
+                    },
+                    "countTriggersBy": "",
+                    "datasource": {
+                        "type": "alexanderzobnin-zabbix-datasource",
+                        "uid": "d7523011-6540-4ada-8426-3bffd3808017"
+                    },
+                    "evaltype": "0",
+                    "functions": [
+                        {
+                            "added": true,
+                            "def": {
+                                "category": "Aggregate",
+                                "defaultParams": [],
+                                "name": "sumSeries",
+                                "params": []
+                            },
+                            "params": [],
+                            "text": "sumSeries()"
+                        },
+                        {
+                            "added": true,
+                            "def": {
+                                "category": "Alias",
+                                "defaultParams": [],
+                                "name": "setAlias",
+                                "params": [
+                                    {
+                                        "name": "alias",
+                                        "type": "string"
+                                    }
+                                ]
+                            },
+                            "params": [
+                                "办公网实时在线终端数-无线"
+                            ],
+                            "text": "setAlias()"
+                        }
+                    ],
+                    "group": {
+                        "filter": "网络设备-$Group"
+                    },
+                    "host": {
+                        "filter": "/MSCG|-AC-01/"
+                    },
+                    "item": {
+                        "filter": "hwTotalWlsOnlineNum"
+                    },
+                    "itemTag": {
+                        "filter": "AAA: OnlineNum"
+                    },
+                    "macro": {
+                        "filter": ""
+                    },
+                    "options": {
+                        "count": false,
+                        "disableDataAlignment": false,
+                        "showDisabledItems": false,
+                        "skipEmptyValues": false,
+                        "useTrends": "default",
+                        "useZabbixValueMapping": false
+                    },
+                    "proxy": {
+                        "filter": ""
+                    },
+                    "queryType": "0",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "schema": 12,
+                    "table": {
+                        "skipEmptyValues": false
+                    },
+                    "tags": {
+                        "filter": ""
+                    },
+                    "textFilter": "",
+                    "trigger": {
+                        "filter": ""
+                    }
+                }
+            ],
+            "title": "办公网实时在线终端数-无线",
+            "type": "timeseries"
+        }
+    ],
+    "refresh": "30m",
+    "schemaVersion": 39,
+    "tags": [
+        "PROD"
+    ],
+    "templating": {
+        "list": [
+            {
+                "current": {
+                    "selected": false,
+                    "text": "郑州信产",
+                    "value": "郑州信产"
+                },
+                "datasource": {
+                    "type": "marcusolsson-json-datasource",
+                    "uid": "b44c94f9-c935-4f7e-a55f-91a01cc25a99"
+                },
+                "definition": "$[*].pointName",
+                "hide": 0,
+                "includeAll": false,
+                "label": "办公点",
+                "multi": false,
+                "name": "Group",
+                "options": [],
+                "query": {
+                    "cacheDurationSeconds": 300,
+                    "fields": [
+                        {
+                            "jsonPath": "$[*].pointName"
+                        }
+                    ],
+                    "method": "GET",
+                    "queryParams": "",
+                    "urlPath": ""
+                },
+                "refresh": 1,
+                "regex": "",
+                "skipUrlSync": false,
+                "sort": 0,
+                "type": "query"
+            }
+        ]
+    },
+    "time": {
+        "from": "now-12h",
+        "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "002 办公场地终端接入 v20240426",
+    "uid": "9TSR1aF4z1",
+    "version": 108,
+    "weekStart": ""
+}
