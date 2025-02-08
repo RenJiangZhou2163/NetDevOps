@@ -106,6 +106,17 @@ jobs:
           load: true
           push: true
 
+      - name: Build and push Nautobot image with plugins
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./packaging/docker/custom/Dockerfile.nautobot
+          build-args: |
+            NAUTOBOT_VERSION=stable-py3.12
+          tags: ${{ secrets.DOCKER_USERNAME }}/nautobot-plugins:stable-py3.12
+          load: true
+          push: true
+
       - name: Build and push image with plugins
         uses: docker/build-push-action@v5
         with:
