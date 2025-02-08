@@ -2,9 +2,9 @@
 name: Grafana
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   schedule:
     - cron: "0 0 * * 0"
 
@@ -77,43 +77,3 @@ jobs:
         with:
           name: grafana_oncall_latest
           path: grafana_oncall_latest.tar.gz
-
-  Grafana-Plugins:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Build and push with plugins
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./packaging/docker/custom/Dockerfile.grafana
-          build-args: |
-            GRAFANA_VERSION=latest
-            GF_INSTALL_PLUGINS=grafana-clock-panel,alexanderzobnin-zabbix-app,camptocamp-prometheus-alertmanager-datasource,grafana-opensearch-datasource,marcusolsson-csv-datasource,volkovlabs-grapi-datasource,marcusolsson-json-datasource,yesoreyeram-infinity-datasource
-          tags: ${{ secrets.DOCKER_USERNAME }}/grafana-plugins:latest
-          load: true
-          push: true
-
-      - name: Build and push with plugins
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./packaging/docker/custom/Dockerfile.grafana
-          build-args: |
-            GRAFANA_VERSION=10.2.0
-            GF_INSTALL_PLUGINS=grafana-clock-panel,alexanderzobnin-zabbix-app,camptocamp-prometheus-alertmanager-datasource,grafana-opensearch-datasource,marcusolsson-csv-datasource,volkovlabs-grapi-datasource,marcusolsson-json-datasource,yesoreyeram-infinity-datasource
-          tags: ${{ secrets.DOCKER_USERNAME }}/grafana-plugins:10.2.0
-          load: true
-          push: true

@@ -1,4 +1,4 @@
-name: Test
+name: Custom
 
 on:
   push:
