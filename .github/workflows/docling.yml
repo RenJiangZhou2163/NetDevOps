@@ -28,7 +28,7 @@ jobs:
       - name: Build
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./docling
           file: Dockerfile
           tags: docling:main
           load: true
