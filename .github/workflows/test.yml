@@ -1,4 +1,4 @@
-name: NetworkOps
+name: Test
 
 on:
   push:
@@ -12,7 +12,29 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        nautobot_version: [latest, stable, stable-py3.12, 2.4]
+        nautobot_version:
+          [
+            latest,
+            latest-py3.12,
+            latest-py3.12,
+            latest-py3.11,
+            latest-py3.10,
+            latest-py3.9,
+            latest-py3.8,
+            stable,
+            stable-py3.12,
+            stable-py3.11,
+            stable-py3.10,
+            stable-py3.9,
+            stable-py3.8,
+            stable-py3.7,
+            stable-py3.6,
+            2.4,
+            2.4-py3.12,
+            2.4-py3.11,
+            2.4-py3.10,
+            2.4-py3.9,
+          ]
 
     steps:
       - name: Checkout code
