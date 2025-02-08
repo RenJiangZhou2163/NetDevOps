@@ -22,7 +22,7 @@ jobs:
       - name: Set working directory
         run: |
           pwd
-          ll -a 
+          ls -a 
           cd docling
           pwd
           ls -a
