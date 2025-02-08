@@ -83,5 +83,5 @@ jobs:
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: trivy-java-db:1
+          name: trivy-java-db
           path: javadb.tar.gz
