@@ -40,13 +40,3 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/docling:main
           load: true
           push: true # 是否推送镜像到 Docker Hub
-
-      - name: Save Docker image as file
-        run: |
-          docker save -o docling_main.tar.gz docling:main
-
-      - name: Upload Image Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: docling_main
-          path: docling_main.tar.gz
