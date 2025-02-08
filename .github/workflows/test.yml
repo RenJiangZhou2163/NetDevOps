@@ -61,7 +61,6 @@ jobs:
         with:
           context: .
           file: ./packaging/docker/custom/Dockerfile.nautobot
-          platforms: linux/amd64,linux/arm
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
           build-args: |
@@ -204,7 +203,6 @@ jobs:
         with:
           context: .
           file: ./packaging/docker/custom/Dockerfile.grafana
-          platforms: linux/amd64,linux/arm
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
           build-args: |
