@@ -1,9 +1,9 @@
 name: Custom
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   schedule:
     - cron: "0 0 * * 0" # 每周日凌晨0点执行
 
@@ -13,7 +13,8 @@ jobs:
     strategy:
       max-parallel: 5 # 限制同时运行的任务数量
       matrix:
-        nautobot_version: [
+        nautobot_version:
+          [
             latest,
             latest-py3.12,
             latest-py3.11,
@@ -26,8 +27,6 @@ jobs:
             stable-py3.10,
             stable-py3.9,
             stable-py3.8,
-            # stable-py3.7,
-            # stable-py3.6,
             2.4,
             2.4-py3.12,
             2.4-py3.11,
