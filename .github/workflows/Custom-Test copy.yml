@@ -26,5 +26,5 @@ jobs:
 
       - name: Pull and Save Image as File
         run: |
-          pip run docling
+          pip install docling
           docling-tools models download
