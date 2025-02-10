@@ -1,9 +1,9 @@
 name: Custom
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   schedule:
     - cron: "0 0 * * 0" # 每周日凌晨0点执行
 
