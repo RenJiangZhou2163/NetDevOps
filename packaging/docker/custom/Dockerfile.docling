@@ -1,12 +1,4 @@
-# 使用最新的 Python 3.12 小版本的 slim 镜像
 FROM python:3.12-slim
-
-# 设置工作目录
-WORKDIR /app
-
-# 创建并激活虚拟环境
-RUN python -m venv /app/venv
-ENV PATH="/app/venv/bin:$PATH"
 
 # 更新 pip 到最新版本
 RUN pip install --upgrade pip
@@ -15,6 +7,3 @@ RUN pip install --upgrade pip
 RUN pip install docling \
     && docling-tools models download \
     && rm -rf /root/.cache/pip
-
-# 定义容器启动时的命令（如果有需要）
-# CMD ["python", "your_script.py"]
