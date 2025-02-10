@@ -35,5 +35,5 @@ jobs:
           file: ./docling/Dockerfile
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/docling:main
-            ${{ secrets.DOCKER_USERNAME }}/docling:${{ github.sha::8 }}
+            ${{ secrets.DOCKER_USERNAME }}/docling:${{ github.sha }}
           push: true
