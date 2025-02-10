@@ -34,5 +34,4 @@ jobs:
           context: ./docling
           file: ./docling/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/docling:main
-          load: true
           push: true
