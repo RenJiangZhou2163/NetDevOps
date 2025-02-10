@@ -65,7 +65,6 @@ jobs:
           build-args: |
             NAUTOBOT_VERSION=${{ matrix.nautobot_version }}
           tags: ${{ secrets.DOCKER_USERNAME }}/nautobot-plugins:${{ matrix.nautobot_version }}
-          load: true
           push: true
 
   Grafana-Plugins:
@@ -210,5 +209,4 @@ jobs:
           tags:
             ${{ secrets.DOCKER_USERNAME }}/grafana-plugins:${{ matrix.nautobot_version }}
             ${{ secrets.DOCKER_USERNAME }}/grafana-plugins:${{ github.sha }}
-          load: true
           push: true

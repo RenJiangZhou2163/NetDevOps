@@ -1,0 +1,4 @@
+FROM python:3.12.9-slim
+
+RUN pip install docling && \
+    docling-tools models download
