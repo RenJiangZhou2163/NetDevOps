@@ -6,10 +6,12 @@ services:
       - "--config.file=/etc/prometheus/prometheus.yml"
     ports:
       - 9090:9090
-    restart: unless-stopped
+    restart: ${RESTART_POLICY:-unless-stopped}
     volumes:
       - ./prometheus:/etc/prometheus
       - prom_data:/prometheus
+    networks:
+      frontend:
 
 volumes:
   prom_data:
