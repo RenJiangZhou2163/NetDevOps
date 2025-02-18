@@ -9,9 +9,9 @@ services:
     restart: ${RESTART_POLICY:-unless-stopped}
     volumes:
       - ./prometheus:/etc/prometheus
-      - prom_data:/prometheus
+      - prom-storage:/prometheus
     networks:
       frontend:
 
 volumes:
-  prom_data:
+  prom-storage:
