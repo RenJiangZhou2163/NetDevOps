@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  rabbitmq:
+    image: ${IMAGE_PREFIX}rabbitmq:latest
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      TZ: Asia/Shanghai
+      RABBITMQ_DEFAULT_USER: i1stcs
+      RABBITMQ_DEFAULT_PASS: xFusion@12#$
+    volumes:
+      - /data/var/lib/rabbitmq:/var/lib/rabbitmq:rw
+    restart: always

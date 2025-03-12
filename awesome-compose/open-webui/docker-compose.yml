@@ -9,11 +9,11 @@ services:
       - ENV=dev
 
       - WEBUI_AUTH=False
-      - WEBUI_NAME=valiantlynx AI
+      - WEBUI_NAME=Person AI
       - WEBUI_URL=http://localhost:8080
       - WEBUI_SECRET_KEY=t0p-s3cr3t
     volumes:
-      - ./ollama-webui/data:/app/backend/data
+      - ./open-webui/data:/app/backend/data
     ports:
       - "3010:8080"
     extra_hosts:
