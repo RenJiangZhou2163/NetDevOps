@@ -8,7 +8,7 @@ on:
     - cron: "0 0 * * 0" # 每周日凌晨0点执行
 
 jobs:
-  docling:
+  RocketChat:
     runs-on: ubuntu-latest
 
     steps:
