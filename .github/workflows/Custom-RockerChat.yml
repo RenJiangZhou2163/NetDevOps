@@ -31,5 +31,5 @@ jobs:
           file: ./packaging/docker/custom/Dockerfile.RocketChat.7.5
           # build-args: |
           #   NAUTOBOT_VERSION=${{ matrix.nautobot_version }}
-          tags: ${{ secrets.DOCKER_USERNAME }}/RocketChat:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/rocketchat:latest
           push: true
