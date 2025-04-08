@@ -1,4 +1,4 @@
-name: Custom
+name: Custom-RockerChat
 
 on:
   push:
