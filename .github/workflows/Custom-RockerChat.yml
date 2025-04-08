@@ -24,12 +24,10 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and push Nautobot image with plugins
+      - name: Build and push image with plugins
         uses: docker/build-push-action@v5
         with:
           context: .
           file: ./packaging/docker/custom/Dockerfile.RocketChat.7.5
-          # build-args: |
-          #   NAUTOBOT_VERSION=${{ matrix.nautobot_version }}
           tags: ${{ secrets.DOCKER_USERNAME }}/rocketchat:latest
           push: true
